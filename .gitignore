@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/chroma_db/
+data/*.db*
+evidence/videos/*.mp4
+.streamlit/secrets.toml
+apikey*
+tmp/

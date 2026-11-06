@@ -1,0 +1,89 @@
+{
+  "modelo": "gemini-3.5-flash",
+  "mensajes_memoria": 4,
+  "turnos": [
+    {
+      "consulta": "Consulta INC-022 con consultar_ticket y validar_sla. Busca su política con buscar_casos_similares y explica por qué requiere aprobación. No escribas cambios.",
+      "respuesta": "### Información del Incidente **INC-022**\n* **Asunto:** Servidor requiere repuesto\n* **Descripción:** Falla persistente tras reiniciar. Se requiere atención técnica.\n* **Cobertura:** Vigente\n* **SLA:** 24 horas (Horas transcurridas: 4; dentro de SLA)\n* **Costo estimado:** $250.000 CLP\n* **Incidentes previos (90 días):** 0\n\n---\n\n### Validación de SLA\n* **Resultado:** Cobertura vigente y dentro del margen del SLA (Elegible).\n\n---\n\n### Políticas Aplicables\n* **Fuente:** `politicas.md`, **Sección:** `S2` (Costos)\n  > *\"Un costo estimado mayor a $100.000 CLP requiere autorización de la jefatura. El agente no compra repuestos ni realiza pagos. El límite es estricto: $100.000 no activa aprobación adicional.\"*\n\n---\n\n### Explicación de por qué requiere aprobación\nEl incidente **INC-022** cuenta con cobertura vigente y está dentro de los plazos del SLA; sin embargo, su costo estimado asciende a **$250.000 CLP**, lo cual supera el límite estricto de **$100.000 CLP** estipulado en la sección **S2** de la política de costos. Por ende, la regla de negocio exige aplicar la acción **`solicitar_aprobacion`** de jefatura antes de autorizar la atención.\n\n*(Conforme a la instrucción, no se han registrado cambios ni modificaciones en el sistema).*",
+      "herramientas": [
+        {
+          "herramienta": "consultar_ticket",
+          "entrada": {
+            "ticket_id": "INC-022"
+          },
+          "salida": {
+            "ticket_id": "INC-022",
+            "solicitante_id": "S-012",
+            "asunto": "Servidor requiere repuesto",
+            "categoria": "servidor",
+            "costo_estimado": 250000,
+            "fecha_apertura": "2025-10-15",
+            "cobertura": "vigente",
+            "descripcion": "Falla persistente tras reiniciar. Se requiere atención técnica.",
+            "impacto": "individual",
+            "urgencia": "normal",
+            "horas_transcurridas": 4,
+            "historial_solicitante": [],
+            "incidentes_previos_90d": 0
+          }
+        },
+        {
+          "herramienta": "validar_sla",
+          "entrada": {
+            "ticket_id": "INC-022"
+          },
+          "salida": {
+            "elegible": true,
+            "razon": "Cobertura vigente y dentro de SLA",
+            "sla_horas": 24
+          }
+        },
+        {
+          "herramienta": "buscar_casos_similares",
+          "entrada": {
+            "texto": "Servidor requiere repuesto costo 250000 aprobación"
+          },
+          "salida": [
+            {
+              "tipo": "caso",
+              "texto": "Servidor requiere repuesto de $250.000: la orden quedó bloqueada hasta aprobación de jefatura.",
+              "meta": {
+                "fuente": "caso_previo",
+                "id": "C2"
+              }
+            },
+            {
+              "tipo": "caso",
+              "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
+              "meta": {
+                "id": "C3",
+                "fuente": "caso_previo"
+              }
+            },
+            {
+              "tipo": "politica",
+              "texto": "Atención preferente\nSi existe historial de atención, el costo es menor a $50.000 y la descripción está completa, se genera orden preferente. Un historial previo no autoriza saltarse cobertura, costo ni recurrencia.",
+              "meta": {
+                "seccion": "S4",
+                "fuente": "politicas.md"
+              }
+            },
+            {
+              "tipo": "politica",
+              "texto": "Costos\nUn costo estimado mayor a $100.000 CLP requiere autorización de la jefatura. El agente no compra repuestos ni realiza pagos. El límite es estricto: $100.000 no activa aprobación adicional.",
+              "meta": {
+                "seccion": "S2",
+                "fuente": "politicas.md"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "consulta": "¿Cuál era el número y costo del incidente que acabamos de revisar?",
+      "respuesta": "El incidente revisado fue el **INC-022** y su costo estimado es de **$250.000 CLP**.",
+      "herramientas": []
+    }
+  ]
+}

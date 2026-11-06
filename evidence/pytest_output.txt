@@ -1,0 +1,48 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-8.4.2, pluggy-1.7.0 -- C:\Users\Vto\Desktop\ia\servicedesk-agent\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Vto\Desktop\ia\servicedesk-agent
+configfile: pytest.ini
+plugins: anyio-4.16.0, langsmith-0.14.17
+collecting ... collected 38 items
+
+tests/test_e2e.py::test_flujo[INC-001-resolver_estandar-True] PASSED     [  2%]
+tests/test_e2e.py::test_flujo[INC-015-escalar-False] PASSED              [  5%]
+tests/test_e2e.py::test_flujo[INC-022-solicitar_aprobacion-False] PASSED [  7%]
+tests/test_e2e.py::test_flujo[INC-030-escalar_recurrencia-False] PASSED  [ 10%]
+tests/test_e2e.py::test_flujo[INC-035-solicitar_info-False] PASSED       [ 13%]
+tests/test_e2e.py::test_flujo[INC-040-escalar-False] PASSED              [ 15%]
+tests/test_e2e.py::test_cambio_por_memoria PASSED                        [ 18%]
+tests/test_e2e.py::test_completar_informacion PASSED                     [ 21%]
+tests/test_e2e.py::test_inexistente_sin_escritura PASSED                 [ 23%]
+tests/test_e2e.py::test_buffer_conversacion PASSED                       [ 26%]
+tests/test_e2e.py::test_rag_en_flujo PASSED                              [ 28%]
+tests/test_e2e.py::test_fallo_rag_visible PASSED                         [ 31%]
+tests/test_gemini.py::test_conserva_firma_y_respuesta_de_herramienta PASSED [ 34%]
+tests/test_gemini.py::test_sin_candidatos_informa_error PASSED           [ 36%]
+tests/test_planner.py::test_reglas_y_fronteras[cambios0-escalar] PASSED  [ 39%]
+tests/test_planner.py::test_reglas_y_fronteras[cambios1-solicitar_aprobacion] PASSED [ 42%]
+tests/test_planner.py::test_reglas_y_fronteras[cambios2-escalar_recurrencia] PASSED [ 44%]
+tests/test_planner.py::test_reglas_y_fronteras[cambios3-resolver_preferente] PASSED [ 47%]
+tests/test_planner.py::test_reglas_y_fronteras[cambios4-solicitar_info] PASSED [ 50%]
+tests/test_planner.py::test_reglas_y_fronteras[cambios5-resolver_estandar] PASSED [ 52%]
+tests/test_planner.py::test_reglas_y_fronteras[cambios6-resolver_estandar] PASSED [ 55%]
+tests/test_planner.py::test_reglas_y_fronteras[cambios7-resolver_estandar] PASSED [ 57%]
+tests/test_planner.py::test_reglas_y_fronteras[cambios8-escalar] PASSED  [ 60%]
+tests/test_planner.py::test_reglas_y_fronteras[cambios9-solicitar_aprobacion] PASSED [ 63%]
+tests/test_planner.py::test_reglas_y_fronteras[cambios10-solicitar_info] PASSED [ 65%]
+tests/test_tools.py::test_consulta_existente PASSED                      [ 68%]
+tests/test_tools.py::test_consulta_inexistente PASSED                    [ 71%]
+tests/test_tools.py::test_consulta_parametrizada PASSED                  [ 73%]
+tests/test_tools.py::test_cobertura PASSED                               [ 76%]
+tests/test_tools.py::test_sla PASSED                                     [ 78%]
+tests/test_tools.py::test_validacion_inexistente PASSED                  [ 81%]
+tests/test_tools.py::test_prioridad_critica PASSED                       [ 84%]
+tests/test_tools.py::test_orden_idempotente PASSED                       [ 86%]
+tests/test_tools.py::test_orden_alto_costo_bloqueada PASSED              [ 89%]
+tests/test_tools.py::test_crm_no_permite_saltar_reglas PASSED            [ 92%]
+tests/test_tools.py::test_crm_guarda_una_decision PASSED                 [ 94%]
+tests/test_tools.py::test_notificacion_persistida PASSED                 [ 97%]
+tests/test_tools.py::test_notificacion_inexistente PASSED                [100%]
+
+============================= 38 passed in 3.29s ==============================

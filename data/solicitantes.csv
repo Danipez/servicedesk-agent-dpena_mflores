@@ -1,0 +1,16 @@
+solicitante_id,nombre,email,incidentes_previos_90d
+S-001,Solicitante 1,solicitante1@example.com,0
+S-002,Solicitante 2,solicitante2@example.com,0
+S-003,Solicitante 3,solicitante3@example.com,3
+S-004,Solicitante 4,solicitante4@example.com,0
+S-005,Solicitante 5,solicitante5@example.com,0
+S-006,Solicitante 6,solicitante6@example.com,0
+S-007,Solicitante 7,solicitante7@example.com,0
+S-008,Solicitante 8,solicitante8@example.com,0
+S-009,Solicitante 9,solicitante9@example.com,0
+S-010,Solicitante 10,solicitante10@example.com,0
+S-011,Solicitante 11,solicitante11@example.com,0
+S-012,Solicitante 12,solicitante12@example.com,0
+S-013,Solicitante 13,solicitante13@example.com,0
+S-014,Solicitante 14,solicitante14@example.com,0
+S-015,Solicitante 15,solicitante15@example.com,0

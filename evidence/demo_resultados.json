@@ -1,0 +1,1682 @@
+[
+  {
+    "ok": true,
+    "ticket_id": "INC-001",
+    "accion": "resolver_estandar",
+    "razon": "Incidente cubierto, completo y dentro de umbrales",
+    "ticket": {
+      "ticket_id": "INC-001",
+      "solicitante_id": "S-001",
+      "asunto": "Mouse no responde",
+      "categoria": "periferico",
+      "costo_estimado": 25000,
+      "fecha_apertura": "2025-10-14",
+      "cobertura": "vigente",
+      "descripcion": "Falla persistente tras reiniciar. Se requiere atención técnica.",
+      "impacto": "individual",
+      "urgencia": "normal",
+      "horas_transcurridas": 1,
+      "historial_solicitante": [],
+      "incidentes_previos_90d": 0
+    },
+    "validacion": {
+      "elegible": true,
+      "razon": "Cobertura vigente y dentro de SLA",
+      "sla_horas": 24
+    },
+    "prioridad": {
+      "prioridad": "P3",
+      "tiempo_objetivo_horas": 24
+    },
+    "fuentes": [
+      {
+        "tipo": "caso",
+        "texto": "Incidente de mouse que no responde, cobertura vigente, se generó orden estándar P3.",
+        "meta": {
+          "id": "C1",
+          "fuente": "caso_previo"
+        }
+      },
+      {
+        "tipo": "caso",
+        "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
+        "meta": {
+          "fuente": "caso_previo",
+          "id": "C3"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
+        "meta": {
+          "fuente": "politicas.md",
+          "seccion": "S5"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+        "meta": {
+          "seccion": "S6",
+          "fuente": "politicas.md"
+        }
+      }
+    ],
+    "trace": [
+      {
+        "herramienta": "consultar_ticket",
+        "entrada": {
+          "ticket_id": "INC-001"
+        },
+        "salida": {
+          "ticket_id": "INC-001",
+          "solicitante_id": "S-001",
+          "asunto": "Mouse no responde",
+          "categoria": "periferico",
+          "costo_estimado": 25000,
+          "fecha_apertura": "2025-10-14",
+          "cobertura": "vigente",
+          "descripcion": "Falla persistente tras reiniciar. Se requiere atención técnica.",
+          "impacto": "individual",
+          "urgencia": "normal",
+          "horas_transcurridas": 1,
+          "historial_solicitante": [],
+          "incidentes_previos_90d": 0
+        }
+      },
+      {
+        "herramienta": "validar_sla",
+        "entrada": {
+          "ticket_id": "INC-001"
+        },
+        "salida": {
+          "elegible": true,
+          "razon": "Cobertura vigente y dentro de SLA",
+          "sla_horas": 24
+        }
+      },
+      {
+        "herramienta": "calcular_prioridad",
+        "entrada": {
+          "ticket_id": "INC-001"
+        },
+        "salida": {
+          "prioridad": "P3",
+          "tiempo_objetivo_horas": 24
+        }
+      },
+      {
+        "herramienta": "buscar_casos_similares",
+        "entrada": {
+          "texto": "Mouse no responde Falla persistente tras reiniciar. Se requiere atención técnica."
+        },
+        "salida": [
+          {
+            "tipo": "caso",
+            "texto": "Incidente de mouse que no responde, cobertura vigente, se generó orden estándar P3.",
+            "meta": {
+              "id": "C1",
+              "fuente": "caso_previo"
+            }
+          },
+          {
+            "tipo": "caso",
+            "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
+            "meta": {
+              "fuente": "caso_previo",
+              "id": "C3"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
+            "meta": {
+              "fuente": "politicas.md",
+              "seccion": "S5"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+            "meta": {
+              "seccion": "S6",
+              "fuente": "politicas.md"
+            }
+          }
+        ]
+      },
+      {
+        "planner": "resolver_estandar",
+        "razon": "Incidente cubierto, completo y dentro de umbrales",
+        "estado": {
+          "elegible": true,
+          "razon": "Cobertura vigente y dentro de SLA",
+          "costo": 25000,
+          "incidentes_previos": 0,
+          "solicitante_recurrente": false,
+          "falta_info": false
+        }
+      },
+      {
+        "herramienta": "generar_orden",
+        "entrada": {
+          "ticket_id": "INC-001",
+          "descripcion": ""
+        },
+        "salida": {
+          "ok": true,
+          "ticket_id": "INC-001",
+          "codigo": "OT-INC-001-F5158C",
+          "prioridad": "P3",
+          "equipo": "Soporte nivel 1",
+          "estado": "pendiente",
+          "simulada": true
+        }
+      },
+      {
+        "herramienta": "actualizar_crm",
+        "entrada": {
+          "ticket_id": "INC-001",
+          "estado": "resolver_estandar",
+          "nota": "Incidente cubierto, completo y dentro de umbrales",
+          "descripcion": ""
+        },
+        "salida": {
+          "ok": true,
+          "estado": "resolver_estandar"
+        }
+      },
+      {
+        "herramienta": "notificar_solicitante",
+        "entrada": {
+          "solicitante_id": "S-001",
+          "mensaje": "Incidente INC-001: resolver_estandar. Incidente cubierto, completo y dentro de umbrales. Orden de atención simulada: OT-INC-001-F5158C."
+        },
+        "salida": {
+          "ok": true,
+          "canal": "mock",
+          "solicitante_id": "S-001"
+        }
+      }
+    ],
+    "orden": {
+      "ok": true,
+      "ticket_id": "INC-001",
+      "codigo": "OT-INC-001-F5158C",
+      "prioridad": "P3",
+      "equipo": "Soporte nivel 1",
+      "estado": "pendiente",
+      "simulada": true
+    },
+    "notificacion": {
+      "ok": true,
+      "canal": "mock",
+      "solicitante_id": "S-001"
+    },
+    "duracion_segundos": 5.965
+  },
+  {
+    "ok": true,
+    "ticket_id": "INC-001",
+    "accion": "resolver_preferente",
+    "razon": "Solicitante conocido, contexto completo y costo bajo",
+    "ticket": {
+      "ticket_id": "INC-001",
+      "solicitante_id": "S-001",
+      "asunto": "Mouse no responde",
+      "categoria": "periferico",
+      "costo_estimado": 25000,
+      "fecha_apertura": "2025-10-14",
+      "cobertura": "vigente",
+      "descripcion": "Falla persistente tras reiniciar. Se requiere atención técnica.",
+      "impacto": "individual",
+      "urgencia": "normal",
+      "horas_transcurridas": 1,
+      "historial_solicitante": [
+        {
+          "id": 1,
+          "solicitante_id": "S-001",
+          "ticket_id": "INC-001",
+          "fecha": "2026-11-06T15:11:28.032141+00:00",
+          "decision": "resolver_estandar",
+          "costo": 25000,
+          "motivo": "Incidente cubierto, completo y dentro de umbrales"
+        }
+      ],
+      "incidentes_previos_90d": 1
+    },
+    "validacion": {
+      "elegible": true,
+      "razon": "Cobertura vigente y dentro de SLA",
+      "sla_horas": 24
+    },
+    "prioridad": {
+      "prioridad": "P3",
+      "tiempo_objetivo_horas": 24
+    },
+    "fuentes": [
+      {
+        "tipo": "caso",
+        "texto": "Incidente de mouse que no responde, cobertura vigente, se generó orden estándar P3.",
+        "meta": {
+          "id": "C1",
+          "fuente": "caso_previo"
+        }
+      },
+      {
+        "tipo": "caso",
+        "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
+        "meta": {
+          "id": "C3",
+          "fuente": "caso_previo"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
+        "meta": {
+          "seccion": "S5",
+          "fuente": "politicas.md"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+        "meta": {
+          "fuente": "politicas.md",
+          "seccion": "S6"
+        }
+      }
+    ],
+    "trace": [
+      {
+        "herramienta": "consultar_ticket",
+        "entrada": {
+          "ticket_id": "INC-001"
+        },
+        "salida": {
+          "ticket_id": "INC-001",
+          "solicitante_id": "S-001",
+          "asunto": "Mouse no responde",
+          "categoria": "periferico",
+          "costo_estimado": 25000,
+          "fecha_apertura": "2025-10-14",
+          "cobertura": "vigente",
+          "descripcion": "Falla persistente tras reiniciar. Se requiere atención técnica.",
+          "impacto": "individual",
+          "urgencia": "normal",
+          "horas_transcurridas": 1,
+          "historial_solicitante": [
+            {
+              "id": 1,
+              "solicitante_id": "S-001",
+              "ticket_id": "INC-001",
+              "fecha": "2026-11-06T15:11:28.032141+00:00",
+              "decision": "resolver_estandar",
+              "costo": 25000,
+              "motivo": "Incidente cubierto, completo y dentro de umbrales"
+            }
+          ],
+          "incidentes_previos_90d": 1
+        }
+      },
+      {
+        "herramienta": "validar_sla",
+        "entrada": {
+          "ticket_id": "INC-001"
+        },
+        "salida": {
+          "elegible": true,
+          "razon": "Cobertura vigente y dentro de SLA",
+          "sla_horas": 24
+        }
+      },
+      {
+        "herramienta": "calcular_prioridad",
+        "entrada": {
+          "ticket_id": "INC-001"
+        },
+        "salida": {
+          "prioridad": "P3",
+          "tiempo_objetivo_horas": 24
+        }
+      },
+      {
+        "herramienta": "buscar_casos_similares",
+        "entrada": {
+          "texto": "Mouse no responde Falla persistente tras reiniciar. Se requiere atención técnica."
+        },
+        "salida": [
+          {
+            "tipo": "caso",
+            "texto": "Incidente de mouse que no responde, cobertura vigente, se generó orden estándar P3.",
+            "meta": {
+              "id": "C1",
+              "fuente": "caso_previo"
+            }
+          },
+          {
+            "tipo": "caso",
+            "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
+            "meta": {
+              "id": "C3",
+              "fuente": "caso_previo"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
+            "meta": {
+              "seccion": "S5",
+              "fuente": "politicas.md"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+            "meta": {
+              "fuente": "politicas.md",
+              "seccion": "S6"
+            }
+          }
+        ]
+      },
+      {
+        "planner": "resolver_preferente",
+        "razon": "Solicitante conocido, contexto completo y costo bajo",
+        "estado": {
+          "elegible": true,
+          "razon": "Cobertura vigente y dentro de SLA",
+          "costo": 25000,
+          "incidentes_previos": 1,
+          "solicitante_recurrente": true,
+          "falta_info": false
+        }
+      },
+      {
+        "herramienta": "generar_orden",
+        "entrada": {
+          "ticket_id": "INC-001",
+          "descripcion": ""
+        },
+        "salida": {
+          "ok": true,
+          "ticket_id": "INC-001",
+          "codigo": "OT-INC-001-F5158C",
+          "prioridad": "P3",
+          "equipo": "Soporte nivel 1",
+          "estado": "pendiente",
+          "simulada": true
+        }
+      },
+      {
+        "herramienta": "actualizar_crm",
+        "entrada": {
+          "ticket_id": "INC-001",
+          "estado": "resolver_preferente",
+          "nota": "Solicitante conocido, contexto completo y costo bajo",
+          "descripcion": ""
+        },
+        "salida": {
+          "ok": true,
+          "estado": "resolver_preferente"
+        }
+      },
+      {
+        "herramienta": "notificar_solicitante",
+        "entrada": {
+          "solicitante_id": "S-001",
+          "mensaje": "Incidente INC-001: resolver_preferente. Solicitante conocido, contexto completo y costo bajo. Orden de atención simulada: OT-INC-001-F5158C."
+        },
+        "salida": {
+          "ok": true,
+          "canal": "mock",
+          "solicitante_id": "S-001"
+        }
+      }
+    ],
+    "orden": {
+      "ok": true,
+      "ticket_id": "INC-001",
+      "codigo": "OT-INC-001-F5158C",
+      "prioridad": "P3",
+      "equipo": "Soporte nivel 1",
+      "estado": "pendiente",
+      "simulada": true
+    },
+    "notificacion": {
+      "ok": true,
+      "canal": "mock",
+      "solicitante_id": "S-001"
+    },
+    "duracion_segundos": 0.024
+  },
+  {
+    "ok": true,
+    "ticket_id": "INC-015",
+    "accion": "escalar",
+    "razon": "Cobertura de soporte vencida",
+    "ticket": {
+      "ticket_id": "INC-015",
+      "solicitante_id": "S-015",
+      "asunto": "Equipo no inicia",
+      "categoria": "equipo",
+      "costo_estimado": 85000,
+      "fecha_apertura": "2025-10-15",
+      "cobertura": "vencida",
+      "descripcion": "Falla persistente tras reiniciar. Se requiere atención técnica.",
+      "impacto": "individual",
+      "urgencia": "normal",
+      "horas_transcurridas": 45,
+      "historial_solicitante": [],
+      "incidentes_previos_90d": 0
+    },
+    "validacion": {
+      "elegible": false,
+      "razon": "Cobertura de soporte vencida",
+      "sla_horas": 24
+    },
+    "prioridad": {
+      "prioridad": "P3",
+      "tiempo_objetivo_horas": 24
+    },
+    "fuentes": [
+      {
+        "tipo": "caso",
+        "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
+        "meta": {
+          "fuente": "caso_previo",
+          "id": "C3"
+        }
+      },
+      {
+        "tipo": "caso",
+        "texto": "Impresora sin conexión con SLA excedido: escalamiento al coordinador de soporte.",
+        "meta": {
+          "id": "C4",
+          "fuente": "caso_previo"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Recurrencia\nTres o más incidentes del mismo solicitante en 90 días requieren revisión de causa raíz por soporte nivel 2. El conteo incluye antecedentes simulados y tickets distintos atendidos, sin duplicar reintentos del mismo ticket.",
+        "meta": {
+          "fuente": "politicas.md",
+          "seccion": "S3"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Atención preferente\nSi existe historial de atención, el costo es menor a $50.000 y la descripción está completa, se genera orden preferente. Un historial previo no autoriza saltarse cobertura, costo ni recurrencia.",
+        "meta": {
+          "fuente": "politicas.md",
+          "seccion": "S4"
+        }
+      }
+    ],
+    "trace": [
+      {
+        "herramienta": "consultar_ticket",
+        "entrada": {
+          "ticket_id": "INC-015"
+        },
+        "salida": {
+          "ticket_id": "INC-015",
+          "solicitante_id": "S-015",
+          "asunto": "Equipo no inicia",
+          "categoria": "equipo",
+          "costo_estimado": 85000,
+          "fecha_apertura": "2025-10-15",
+          "cobertura": "vencida",
+          "descripcion": "Falla persistente tras reiniciar. Se requiere atención técnica.",
+          "impacto": "individual",
+          "urgencia": "normal",
+          "horas_transcurridas": 45,
+          "historial_solicitante": [],
+          "incidentes_previos_90d": 0
+        }
+      },
+      {
+        "herramienta": "validar_sla",
+        "entrada": {
+          "ticket_id": "INC-015"
+        },
+        "salida": {
+          "elegible": false,
+          "razon": "Cobertura de soporte vencida",
+          "sla_horas": 24
+        }
+      },
+      {
+        "herramienta": "calcular_prioridad",
+        "entrada": {
+          "ticket_id": "INC-015"
+        },
+        "salida": {
+          "prioridad": "P3",
+          "tiempo_objetivo_horas": 24
+        }
+      },
+      {
+        "herramienta": "buscar_casos_similares",
+        "entrada": {
+          "texto": "Equipo no inicia Falla persistente tras reiniciar. Se requiere atención técnica."
+        },
+        "salida": [
+          {
+            "tipo": "caso",
+            "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
+            "meta": {
+              "fuente": "caso_previo",
+              "id": "C3"
+            }
+          },
+          {
+            "tipo": "caso",
+            "texto": "Impresora sin conexión con SLA excedido: escalamiento al coordinador de soporte.",
+            "meta": {
+              "id": "C4",
+              "fuente": "caso_previo"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Recurrencia\nTres o más incidentes del mismo solicitante en 90 días requieren revisión de causa raíz por soporte nivel 2. El conteo incluye antecedentes simulados y tickets distintos atendidos, sin duplicar reintentos del mismo ticket.",
+            "meta": {
+              "fuente": "politicas.md",
+              "seccion": "S3"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Atención preferente\nSi existe historial de atención, el costo es menor a $50.000 y la descripción está completa, se genera orden preferente. Un historial previo no autoriza saltarse cobertura, costo ni recurrencia.",
+            "meta": {
+              "fuente": "politicas.md",
+              "seccion": "S4"
+            }
+          }
+        ]
+      },
+      {
+        "planner": "escalar",
+        "razon": "Cobertura de soporte vencida",
+        "estado": {
+          "elegible": false,
+          "razon": "Cobertura de soporte vencida",
+          "costo": 85000,
+          "incidentes_previos": 0,
+          "solicitante_recurrente": false,
+          "falta_info": false
+        }
+      },
+      {
+        "herramienta": "actualizar_crm",
+        "entrada": {
+          "ticket_id": "INC-015",
+          "estado": "escalar",
+          "nota": "Cobertura de soporte vencida",
+          "descripcion": ""
+        },
+        "salida": {
+          "ok": true,
+          "estado": "escalar"
+        }
+      },
+      {
+        "herramienta": "notificar_solicitante",
+        "entrada": {
+          "solicitante_id": "S-015",
+          "mensaje": "Incidente INC-015: escalar. Cobertura de soporte vencida. El caso requiere revisión humana."
+        },
+        "salida": {
+          "ok": true,
+          "canal": "mock",
+          "solicitante_id": "S-015"
+        }
+      }
+    ],
+    "notificacion": {
+      "ok": true,
+      "canal": "mock",
+      "solicitante_id": "S-015"
+    },
+    "duracion_segundos": 0.021
+  },
+  {
+    "ok": true,
+    "ticket_id": "INC-022",
+    "accion": "solicitar_aprobacion",
+    "razon": "Costo $250,000 supera $100,000",
+    "ticket": {
+      "ticket_id": "INC-022",
+      "solicitante_id": "S-012",
+      "asunto": "Servidor requiere repuesto",
+      "categoria": "servidor",
+      "costo_estimado": 250000,
+      "fecha_apertura": "2025-10-15",
+      "cobertura": "vigente",
+      "descripcion": "Falla persistente tras reiniciar. Se requiere atención técnica.",
+      "impacto": "individual",
+      "urgencia": "normal",
+      "horas_transcurridas": 4,
+      "historial_solicitante": [],
+      "incidentes_previos_90d": 0
+    },
+    "validacion": {
+      "elegible": true,
+      "razon": "Cobertura vigente y dentro de SLA",
+      "sla_horas": 24
+    },
+    "prioridad": {
+      "prioridad": "P3",
+      "tiempo_objetivo_horas": 24
+    },
+    "fuentes": [
+      {
+        "tipo": "caso",
+        "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
+        "meta": {
+          "id": "C3",
+          "fuente": "caso_previo"
+        }
+      },
+      {
+        "tipo": "caso",
+        "texto": "Impresora sin conexión con SLA excedido: escalamiento al coordinador de soporte.",
+        "meta": {
+          "fuente": "caso_previo",
+          "id": "C4"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
+        "meta": {
+          "fuente": "politicas.md",
+          "seccion": "S5"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Atención preferente\nSi existe historial de atención, el costo es menor a $50.000 y la descripción está completa, se genera orden preferente. Un historial previo no autoriza saltarse cobertura, costo ni recurrencia.",
+        "meta": {
+          "seccion": "S4",
+          "fuente": "politicas.md"
+        }
+      }
+    ],
+    "trace": [
+      {
+        "herramienta": "consultar_ticket",
+        "entrada": {
+          "ticket_id": "INC-022"
+        },
+        "salida": {
+          "ticket_id": "INC-022",
+          "solicitante_id": "S-012",
+          "asunto": "Servidor requiere repuesto",
+          "categoria": "servidor",
+          "costo_estimado": 250000,
+          "fecha_apertura": "2025-10-15",
+          "cobertura": "vigente",
+          "descripcion": "Falla persistente tras reiniciar. Se requiere atención técnica.",
+          "impacto": "individual",
+          "urgencia": "normal",
+          "horas_transcurridas": 4,
+          "historial_solicitante": [],
+          "incidentes_previos_90d": 0
+        }
+      },
+      {
+        "herramienta": "validar_sla",
+        "entrada": {
+          "ticket_id": "INC-022"
+        },
+        "salida": {
+          "elegible": true,
+          "razon": "Cobertura vigente y dentro de SLA",
+          "sla_horas": 24
+        }
+      },
+      {
+        "herramienta": "calcular_prioridad",
+        "entrada": {
+          "ticket_id": "INC-022"
+        },
+        "salida": {
+          "prioridad": "P3",
+          "tiempo_objetivo_horas": 24
+        }
+      },
+      {
+        "herramienta": "buscar_casos_similares",
+        "entrada": {
+          "texto": "Servidor requiere repuesto Falla persistente tras reiniciar. Se requiere atención técnica."
+        },
+        "salida": [
+          {
+            "tipo": "caso",
+            "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
+            "meta": {
+              "id": "C3",
+              "fuente": "caso_previo"
+            }
+          },
+          {
+            "tipo": "caso",
+            "texto": "Impresora sin conexión con SLA excedido: escalamiento al coordinador de soporte.",
+            "meta": {
+              "fuente": "caso_previo",
+              "id": "C4"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
+            "meta": {
+              "fuente": "politicas.md",
+              "seccion": "S5"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Atención preferente\nSi existe historial de atención, el costo es menor a $50.000 y la descripción está completa, se genera orden preferente. Un historial previo no autoriza saltarse cobertura, costo ni recurrencia.",
+            "meta": {
+              "seccion": "S4",
+              "fuente": "politicas.md"
+            }
+          }
+        ]
+      },
+      {
+        "planner": "solicitar_aprobacion",
+        "razon": "Costo $250,000 supera $100,000",
+        "estado": {
+          "elegible": true,
+          "razon": "Cobertura vigente y dentro de SLA",
+          "costo": 250000,
+          "incidentes_previos": 0,
+          "solicitante_recurrente": false,
+          "falta_info": false
+        }
+      },
+      {
+        "herramienta": "actualizar_crm",
+        "entrada": {
+          "ticket_id": "INC-022",
+          "estado": "solicitar_aprobacion",
+          "nota": "Costo $250,000 supera $100,000",
+          "descripcion": ""
+        },
+        "salida": {
+          "ok": true,
+          "estado": "solicitar_aprobacion"
+        }
+      },
+      {
+        "herramienta": "notificar_solicitante",
+        "entrada": {
+          "solicitante_id": "S-012",
+          "mensaje": "Incidente INC-022: solicitar_aprobacion. Costo $250,000 supera $100,000. El caso requiere revisión humana."
+        },
+        "salida": {
+          "ok": true,
+          "canal": "mock",
+          "solicitante_id": "S-012"
+        }
+      }
+    ],
+    "notificacion": {
+      "ok": true,
+      "canal": "mock",
+      "solicitante_id": "S-012"
+    },
+    "duracion_segundos": 0.022
+  },
+  {
+    "ok": true,
+    "ticket_id": "INC-030",
+    "accion": "escalar_recurrencia",
+    "razon": "3 incidentes en 90 días; investigar causa raíz",
+    "ticket": {
+      "ticket_id": "INC-030",
+      "solicitante_id": "S-003",
+      "asunto": "Mouse no responde",
+      "categoria": "periferico",
+      "costo_estimado": 40000,
+      "fecha_apertura": "2025-10-15",
+      "cobertura": "vigente",
+      "descripcion": "Falla persistente tras reiniciar. Se requiere atención técnica.",
+      "impacto": "individual",
+      "urgencia": "normal",
+      "horas_transcurridas": 3,
+      "historial_solicitante": [],
+      "incidentes_previos_90d": 3
+    },
+    "validacion": {
+      "elegible": true,
+      "razon": "Cobertura vigente y dentro de SLA",
+      "sla_horas": 24
+    },
+    "prioridad": {
+      "prioridad": "P3",
+      "tiempo_objetivo_horas": 24
+    },
+    "fuentes": [
+      {
+        "tipo": "caso",
+        "texto": "Incidente de mouse que no responde, cobertura vigente, se generó orden estándar P3.",
+        "meta": {
+          "id": "C1",
+          "fuente": "caso_previo"
+        }
+      },
+      {
+        "tipo": "caso",
+        "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
+        "meta": {
+          "fuente": "caso_previo",
+          "id": "C3"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
+        "meta": {
+          "fuente": "politicas.md",
+          "seccion": "S5"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+        "meta": {
+          "seccion": "S6",
+          "fuente": "politicas.md"
+        }
+      }
+    ],
+    "trace": [
+      {
+        "herramienta": "consultar_ticket",
+        "entrada": {
+          "ticket_id": "INC-030"
+        },
+        "salida": {
+          "ticket_id": "INC-030",
+          "solicitante_id": "S-003",
+          "asunto": "Mouse no responde",
+          "categoria": "periferico",
+          "costo_estimado": 40000,
+          "fecha_apertura": "2025-10-15",
+          "cobertura": "vigente",
+          "descripcion": "Falla persistente tras reiniciar. Se requiere atención técnica.",
+          "impacto": "individual",
+          "urgencia": "normal",
+          "horas_transcurridas": 3,
+          "historial_solicitante": [],
+          "incidentes_previos_90d": 3
+        }
+      },
+      {
+        "herramienta": "validar_sla",
+        "entrada": {
+          "ticket_id": "INC-030"
+        },
+        "salida": {
+          "elegible": true,
+          "razon": "Cobertura vigente y dentro de SLA",
+          "sla_horas": 24
+        }
+      },
+      {
+        "herramienta": "calcular_prioridad",
+        "entrada": {
+          "ticket_id": "INC-030"
+        },
+        "salida": {
+          "prioridad": "P3",
+          "tiempo_objetivo_horas": 24
+        }
+      },
+      {
+        "herramienta": "buscar_casos_similares",
+        "entrada": {
+          "texto": "Mouse no responde Falla persistente tras reiniciar. Se requiere atención técnica."
+        },
+        "salida": [
+          {
+            "tipo": "caso",
+            "texto": "Incidente de mouse que no responde, cobertura vigente, se generó orden estándar P3.",
+            "meta": {
+              "id": "C1",
+              "fuente": "caso_previo"
+            }
+          },
+          {
+            "tipo": "caso",
+            "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
+            "meta": {
+              "fuente": "caso_previo",
+              "id": "C3"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
+            "meta": {
+              "fuente": "politicas.md",
+              "seccion": "S5"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+            "meta": {
+              "seccion": "S6",
+              "fuente": "politicas.md"
+            }
+          }
+        ]
+      },
+      {
+        "planner": "escalar_recurrencia",
+        "razon": "3 incidentes en 90 días; investigar causa raíz",
+        "estado": {
+          "elegible": true,
+          "razon": "Cobertura vigente y dentro de SLA",
+          "costo": 40000,
+          "incidentes_previos": 3,
+          "solicitante_recurrente": false,
+          "falta_info": false
+        }
+      },
+      {
+        "herramienta": "actualizar_crm",
+        "entrada": {
+          "ticket_id": "INC-030",
+          "estado": "escalar_recurrencia",
+          "nota": "3 incidentes en 90 días; investigar causa raíz",
+          "descripcion": ""
+        },
+        "salida": {
+          "ok": true,
+          "estado": "escalar_recurrencia"
+        }
+      },
+      {
+        "herramienta": "notificar_solicitante",
+        "entrada": {
+          "solicitante_id": "S-003",
+          "mensaje": "Incidente INC-030: escalar_recurrencia. 3 incidentes en 90 días; investigar causa raíz. El caso requiere revisión humana."
+        },
+        "salida": {
+          "ok": true,
+          "canal": "mock",
+          "solicitante_id": "S-003"
+        }
+      }
+    ],
+    "notificacion": {
+      "ok": true,
+      "canal": "mock",
+      "solicitante_id": "S-003"
+    },
+    "duracion_segundos": 0.02
+  },
+  {
+    "ok": true,
+    "ticket_id": "INC-035",
+    "accion": "solicitar_info",
+    "razon": "Falta descripción de la falla",
+    "ticket": {
+      "ticket_id": "INC-035",
+      "solicitante_id": "S-005",
+      "asunto": "Impresora sin conexión",
+      "categoria": "impresora",
+      "costo_estimado": 65000,
+      "fecha_apertura": "2025-10-13",
+      "cobertura": "vigente",
+      "descripcion": "",
+      "impacto": "individual",
+      "urgencia": "normal",
+      "horas_transcurridas": 8,
+      "historial_solicitante": [],
+      "incidentes_previos_90d": 0
+    },
+    "validacion": {
+      "elegible": true,
+      "razon": "Cobertura vigente y dentro de SLA",
+      "sla_horas": 24
+    },
+    "prioridad": {
+      "prioridad": "P3",
+      "tiempo_objetivo_horas": 24
+    },
+    "fuentes": [
+      {
+        "tipo": "caso",
+        "texto": "Impresora sin conexión con SLA excedido: escalamiento al coordinador de soporte.",
+        "meta": {
+          "fuente": "caso_previo",
+          "id": "C4"
+        }
+      },
+      {
+        "tipo": "caso",
+        "texto": "Incidente de mouse que no responde, cobertura vigente, se generó orden estándar P3.",
+        "meta": {
+          "fuente": "caso_previo",
+          "id": "C1"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+        "meta": {
+          "seccion": "S6",
+          "fuente": "politicas.md"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
+        "meta": {
+          "fuente": "politicas.md",
+          "seccion": "S5"
+        }
+      }
+    ],
+    "trace": [
+      {
+        "herramienta": "consultar_ticket",
+        "entrada": {
+          "ticket_id": "INC-035"
+        },
+        "salida": {
+          "ticket_id": "INC-035",
+          "solicitante_id": "S-005",
+          "asunto": "Impresora sin conexión",
+          "categoria": "impresora",
+          "costo_estimado": 65000,
+          "fecha_apertura": "2025-10-13",
+          "cobertura": "vigente",
+          "descripcion": "",
+          "impacto": "individual",
+          "urgencia": "normal",
+          "horas_transcurridas": 8,
+          "historial_solicitante": [],
+          "incidentes_previos_90d": 0
+        }
+      },
+      {
+        "herramienta": "validar_sla",
+        "entrada": {
+          "ticket_id": "INC-035"
+        },
+        "salida": {
+          "elegible": true,
+          "razon": "Cobertura vigente y dentro de SLA",
+          "sla_horas": 24
+        }
+      },
+      {
+        "herramienta": "calcular_prioridad",
+        "entrada": {
+          "ticket_id": "INC-035"
+        },
+        "salida": {
+          "prioridad": "P3",
+          "tiempo_objetivo_horas": 24
+        }
+      },
+      {
+        "herramienta": "buscar_casos_similares",
+        "entrada": {
+          "texto": "Impresora sin conexión "
+        },
+        "salida": [
+          {
+            "tipo": "caso",
+            "texto": "Impresora sin conexión con SLA excedido: escalamiento al coordinador de soporte.",
+            "meta": {
+              "fuente": "caso_previo",
+              "id": "C4"
+            }
+          },
+          {
+            "tipo": "caso",
+            "texto": "Incidente de mouse que no responde, cobertura vigente, se generó orden estándar P3.",
+            "meta": {
+              "fuente": "caso_previo",
+              "id": "C1"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+            "meta": {
+              "seccion": "S6",
+              "fuente": "politicas.md"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
+            "meta": {
+              "fuente": "politicas.md",
+              "seccion": "S5"
+            }
+          }
+        ]
+      },
+      {
+        "planner": "solicitar_info",
+        "razon": "Falta descripción de la falla",
+        "estado": {
+          "elegible": true,
+          "razon": "Cobertura vigente y dentro de SLA",
+          "costo": 65000,
+          "incidentes_previos": 0,
+          "solicitante_recurrente": false,
+          "falta_info": true
+        }
+      },
+      {
+        "herramienta": "actualizar_crm",
+        "entrada": {
+          "ticket_id": "INC-035",
+          "estado": "solicitar_info",
+          "nota": "Falta descripción de la falla",
+          "descripcion": ""
+        },
+        "salida": {
+          "ok": true,
+          "estado": "solicitar_info"
+        }
+      },
+      {
+        "herramienta": "notificar_solicitante",
+        "entrada": {
+          "solicitante_id": "S-005",
+          "mensaje": "Incidente INC-035: solicitar_info. Falta descripción de la falla. Se requiere descripción adicional."
+        },
+        "salida": {
+          "ok": true,
+          "canal": "mock",
+          "solicitante_id": "S-005"
+        }
+      }
+    ],
+    "notificacion": {
+      "ok": true,
+      "canal": "mock",
+      "solicitante_id": "S-005"
+    },
+    "duracion_segundos": 0.017
+  },
+  {
+    "ok": true,
+    "ticket_id": "INC-040",
+    "accion": "escalar",
+    "razon": "SLA excedido: 3 horas, máximo 2",
+    "ticket": {
+      "ticket_id": "INC-040",
+      "solicitante_id": "S-001",
+      "asunto": "Equipo no inicia",
+      "categoria": "equipo",
+      "costo_estimado": 85000,
+      "fecha_apertura": "2025-10-15",
+      "cobertura": "vigente",
+      "descripcion": "Falla persistente tras reiniciar. Se requiere atención técnica.",
+      "impacto": "empresa",
+      "urgencia": "alta",
+      "horas_transcurridas": 3,
+      "historial_solicitante": [
+        {
+          "id": 2,
+          "solicitante_id": "S-001",
+          "ticket_id": "INC-001",
+          "fecha": "2026-11-06T15:11:28.056652+00:00",
+          "decision": "resolver_preferente",
+          "costo": 25000,
+          "motivo": "Solicitante conocido, contexto completo y costo bajo"
+        },
+        {
+          "id": 1,
+          "solicitante_id": "S-001",
+          "ticket_id": "INC-001",
+          "fecha": "2026-11-06T15:11:28.032141+00:00",
+          "decision": "resolver_estandar",
+          "costo": 25000,
+          "motivo": "Incidente cubierto, completo y dentro de umbrales"
+        }
+      ],
+      "incidentes_previos_90d": 1
+    },
+    "validacion": {
+      "elegible": false,
+      "razon": "SLA excedido: 3 horas, máximo 2",
+      "sla_horas": 2
+    },
+    "prioridad": {
+      "prioridad": "P1",
+      "tiempo_objetivo_horas": 2
+    },
+    "fuentes": [
+      {
+        "tipo": "caso",
+        "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
+        "meta": {
+          "fuente": "caso_previo",
+          "id": "C3"
+        }
+      },
+      {
+        "tipo": "caso",
+        "texto": "Impresora sin conexión con SLA excedido: escalamiento al coordinador de soporte.",
+        "meta": {
+          "id": "C4",
+          "fuente": "caso_previo"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Recurrencia\nTres o más incidentes del mismo solicitante en 90 días requieren revisión de causa raíz por soporte nivel 2. El conteo incluye antecedentes simulados y tickets distintos atendidos, sin duplicar reintentos del mismo ticket.",
+        "meta": {
+          "seccion": "S3",
+          "fuente": "politicas.md"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Atención preferente\nSi existe historial de atención, el costo es menor a $50.000 y la descripción está completa, se genera orden preferente. Un historial previo no autoriza saltarse cobertura, costo ni recurrencia.",
+        "meta": {
+          "fuente": "politicas.md",
+          "seccion": "S4"
+        }
+      }
+    ],
+    "trace": [
+      {
+        "herramienta": "consultar_ticket",
+        "entrada": {
+          "ticket_id": "INC-040"
+        },
+        "salida": {
+          "ticket_id": "INC-040",
+          "solicitante_id": "S-001",
+          "asunto": "Equipo no inicia",
+          "categoria": "equipo",
+          "costo_estimado": 85000,
+          "fecha_apertura": "2025-10-15",
+          "cobertura": "vigente",
+          "descripcion": "Falla persistente tras reiniciar. Se requiere atención técnica.",
+          "impacto": "empresa",
+          "urgencia": "alta",
+          "horas_transcurridas": 3,
+          "historial_solicitante": [
+            {
+              "id": 2,
+              "solicitante_id": "S-001",
+              "ticket_id": "INC-001",
+              "fecha": "2026-11-06T15:11:28.056652+00:00",
+              "decision": "resolver_preferente",
+              "costo": 25000,
+              "motivo": "Solicitante conocido, contexto completo y costo bajo"
+            },
+            {
+              "id": 1,
+              "solicitante_id": "S-001",
+              "ticket_id": "INC-001",
+              "fecha": "2026-11-06T15:11:28.032141+00:00",
+              "decision": "resolver_estandar",
+              "costo": 25000,
+              "motivo": "Incidente cubierto, completo y dentro de umbrales"
+            }
+          ],
+          "incidentes_previos_90d": 1
+        }
+      },
+      {
+        "herramienta": "validar_sla",
+        "entrada": {
+          "ticket_id": "INC-040"
+        },
+        "salida": {
+          "elegible": false,
+          "razon": "SLA excedido: 3 horas, máximo 2",
+          "sla_horas": 2
+        }
+      },
+      {
+        "herramienta": "calcular_prioridad",
+        "entrada": {
+          "ticket_id": "INC-040"
+        },
+        "salida": {
+          "prioridad": "P1",
+          "tiempo_objetivo_horas": 2
+        }
+      },
+      {
+        "herramienta": "buscar_casos_similares",
+        "entrada": {
+          "texto": "Equipo no inicia Falla persistente tras reiniciar. Se requiere atención técnica."
+        },
+        "salida": [
+          {
+            "tipo": "caso",
+            "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
+            "meta": {
+              "fuente": "caso_previo",
+              "id": "C3"
+            }
+          },
+          {
+            "tipo": "caso",
+            "texto": "Impresora sin conexión con SLA excedido: escalamiento al coordinador de soporte.",
+            "meta": {
+              "id": "C4",
+              "fuente": "caso_previo"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Recurrencia\nTres o más incidentes del mismo solicitante en 90 días requieren revisión de causa raíz por soporte nivel 2. El conteo incluye antecedentes simulados y tickets distintos atendidos, sin duplicar reintentos del mismo ticket.",
+            "meta": {
+              "seccion": "S3",
+              "fuente": "politicas.md"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Atención preferente\nSi existe historial de atención, el costo es menor a $50.000 y la descripción está completa, se genera orden preferente. Un historial previo no autoriza saltarse cobertura, costo ni recurrencia.",
+            "meta": {
+              "fuente": "politicas.md",
+              "seccion": "S4"
+            }
+          }
+        ]
+      },
+      {
+        "planner": "escalar",
+        "razon": "SLA excedido: 3 horas, máximo 2",
+        "estado": {
+          "elegible": false,
+          "razon": "SLA excedido: 3 horas, máximo 2",
+          "costo": 85000,
+          "incidentes_previos": 1,
+          "solicitante_recurrente": true,
+          "falta_info": false
+        }
+      },
+      {
+        "herramienta": "actualizar_crm",
+        "entrada": {
+          "ticket_id": "INC-040",
+          "estado": "escalar",
+          "nota": "SLA excedido: 3 horas, máximo 2",
+          "descripcion": ""
+        },
+        "salida": {
+          "ok": true,
+          "estado": "escalar"
+        }
+      },
+      {
+        "herramienta": "notificar_solicitante",
+        "entrada": {
+          "solicitante_id": "S-001",
+          "mensaje": "Incidente INC-040: escalar. SLA excedido: 3 horas, máximo 2. El caso requiere revisión humana."
+        },
+        "salida": {
+          "ok": true,
+          "canal": "mock",
+          "solicitante_id": "S-001"
+        }
+      }
+    ],
+    "notificacion": {
+      "ok": true,
+      "canal": "mock",
+      "solicitante_id": "S-001"
+    },
+    "duracion_segundos": 0.02
+  },
+  {
+    "ok": true,
+    "ticket_id": "INC-035",
+    "accion": "resolver_estandar",
+    "razon": "Incidente cubierto, completo y dentro de umbrales",
+    "ticket": {
+      "ticket_id": "INC-035",
+      "solicitante_id": "S-005",
+      "asunto": "Impresora sin conexión",
+      "categoria": "impresora",
+      "costo_estimado": 65000,
+      "fecha_apertura": "2025-10-13",
+      "cobertura": "vigente",
+      "descripcion": "",
+      "impacto": "individual",
+      "urgencia": "normal",
+      "horas_transcurridas": 8,
+      "historial_solicitante": [
+        {
+          "id": 6,
+          "solicitante_id": "S-005",
+          "ticket_id": "INC-035",
+          "fecha": "2026-11-06T15:11:28.135193+00:00",
+          "decision": "solicitar_info",
+          "costo": 65000,
+          "motivo": "Falta descripción de la falla"
+        }
+      ],
+      "incidentes_previos_90d": 0
+    },
+    "validacion": {
+      "elegible": true,
+      "razon": "Cobertura vigente y dentro de SLA",
+      "sla_horas": 24
+    },
+    "prioridad": {
+      "prioridad": "P3",
+      "tiempo_objetivo_horas": 24
+    },
+    "fuentes": [
+      {
+        "tipo": "caso",
+        "texto": "Impresora sin conexión con SLA excedido: escalamiento al coordinador de soporte.",
+        "meta": {
+          "fuente": "caso_previo",
+          "id": "C4"
+        }
+      },
+      {
+        "tipo": "caso",
+        "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
+        "meta": {
+          "fuente": "caso_previo",
+          "id": "C3"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Atención preferente\nSi existe historial de atención, el costo es menor a $50.000 y la descripción está completa, se genera orden preferente. Un historial previo no autoriza saltarse cobertura, costo ni recurrencia.",
+        "meta": {
+          "seccion": "S4",
+          "fuente": "politicas.md"
+        }
+      },
+      {
+        "tipo": "politica",
+        "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
+        "meta": {
+          "seccion": "S5",
+          "fuente": "politicas.md"
+        }
+      }
+    ],
+    "trace": [
+      {
+        "herramienta": "consultar_ticket",
+        "entrada": {
+          "ticket_id": "INC-035"
+        },
+        "salida": {
+          "ticket_id": "INC-035",
+          "solicitante_id": "S-005",
+          "asunto": "Impresora sin conexión",
+          "categoria": "impresora",
+          "costo_estimado": 65000,
+          "fecha_apertura": "2025-10-13",
+          "cobertura": "vigente",
+          "descripcion": "",
+          "impacto": "individual",
+          "urgencia": "normal",
+          "horas_transcurridas": 8,
+          "historial_solicitante": [
+            {
+              "id": 6,
+              "solicitante_id": "S-005",
+              "ticket_id": "INC-035",
+              "fecha": "2026-11-06T15:11:28.135193+00:00",
+              "decision": "solicitar_info",
+              "costo": 65000,
+              "motivo": "Falta descripción de la falla"
+            }
+          ],
+          "incidentes_previos_90d": 0
+        }
+      },
+      {
+        "herramienta": "validar_sla",
+        "entrada": {
+          "ticket_id": "INC-035"
+        },
+        "salida": {
+          "elegible": true,
+          "razon": "Cobertura vigente y dentro de SLA",
+          "sla_horas": 24
+        }
+      },
+      {
+        "herramienta": "calcular_prioridad",
+        "entrada": {
+          "ticket_id": "INC-035"
+        },
+        "salida": {
+          "prioridad": "P3",
+          "tiempo_objetivo_horas": 24
+        }
+      },
+      {
+        "herramienta": "buscar_casos_similares",
+        "entrada": {
+          "texto": "Impresora sin conexión Pantalla negra al encender"
+        },
+        "salida": [
+          {
+            "tipo": "caso",
+            "texto": "Impresora sin conexión con SLA excedido: escalamiento al coordinador de soporte.",
+            "meta": {
+              "fuente": "caso_previo",
+              "id": "C4"
+            }
+          },
+          {
+            "tipo": "caso",
+            "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
+            "meta": {
+              "fuente": "caso_previo",
+              "id": "C3"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Atención preferente\nSi existe historial de atención, el costo es menor a $50.000 y la descripción está completa, se genera orden preferente. Un historial previo no autoriza saltarse cobertura, costo ni recurrencia.",
+            "meta": {
+              "seccion": "S4",
+              "fuente": "politicas.md"
+            }
+          },
+          {
+            "tipo": "politica",
+            "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
+            "meta": {
+              "seccion": "S5",
+              "fuente": "politicas.md"
+            }
+          }
+        ]
+      },
+      {
+        "planner": "resolver_estandar",
+        "razon": "Incidente cubierto, completo y dentro de umbrales",
+        "estado": {
+          "elegible": true,
+          "razon": "Cobertura vigente y dentro de SLA",
+          "costo": 65000,
+          "incidentes_previos": 0,
+          "solicitante_recurrente": true,
+          "falta_info": false
+        }
+      },
+      {
+        "herramienta": "generar_orden",
+        "entrada": {
+          "ticket_id": "INC-035",
+          "descripcion": "Pantalla negra al encender"
+        },
+        "salida": {
+          "ok": true,
+          "ticket_id": "INC-035",
+          "codigo": "OT-INC-035-F3B17A",
+          "prioridad": "P3",
+          "equipo": "Soporte nivel 1",
+          "estado": "pendiente",
+          "simulada": true
+        }
+      },
+      {
+        "herramienta": "actualizar_crm",
+        "entrada": {
+          "ticket_id": "INC-035",
+          "estado": "resolver_estandar",
+          "nota": "Incidente cubierto, completo y dentro de umbrales",
+          "descripcion": "Pantalla negra al encender"
+        },
+        "salida": {
+          "ok": true,
+          "estado": "resolver_estandar"
+        }
+      },
+      {
+        "herramienta": "notificar_solicitante",
+        "entrada": {
+          "solicitante_id": "S-005",
+          "mensaje": "Incidente INC-035: resolver_estandar. Incidente cubierto, completo y dentro de umbrales. Orden de atención simulada: OT-INC-035-F3B17A."
+        },
+        "salida": {
+          "ok": true,
+          "canal": "mock",
+          "solicitante_id": "S-005"
+        }
+      }
+    ],
+    "orden": {
+      "ok": true,
+      "ticket_id": "INC-035",
+      "codigo": "OT-INC-035-F3B17A",
+      "prioridad": "P3",
+      "equipo": "Soporte nivel 1",
+      "estado": "pendiente",
+      "simulada": true
+    },
+    "notificacion": {
+      "ok": true,
+      "canal": "mock",
+      "solicitante_id": "S-005"
+    }
+  }
+]
