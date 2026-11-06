@@ -1,4 +1,4 @@
-"""Genera 40 incidentes y 15 solicitantes ficticios con semilla reproducible."""
+"""Genera 40 incidentes y 15 solicitantes de prueba con semilla reproducible."""
 import csv
 import random
 from datetime import timedelta

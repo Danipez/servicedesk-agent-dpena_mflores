@@ -28,7 +28,7 @@ PROMPT=ChatPromptTemplate.from_messages([
      'historial y costo menor a 50000 con descripción, resolver_preferente; '
      'sin descripción, solicitar_info; resto, resolver_estandar. '
      'Las herramientas de escritura comprueban estas reglas. No afirmes que un equipo fue '
-     'reparado: solo puedes generar una orden simulada de atención. No inventes resultados. '
+     'reparado: solo puedes generar una orden de atención. No inventes resultados. '
      'Cita fuente y sección de políticas. Ante errores, informa el problema y detente.'),
     ('placeholder','{chat_history}'),('human','{input}'),('placeholder','{agent_scratchpad}')])
 
@@ -77,7 +77,7 @@ def procesar_solicitud(ticket_id: str, descripcion: str = '', memoria=None, usar
     if not crm.get('ok'):
         return {**resultado,'ok':False,'error':crm.get('error','No se guardó el caso')}
     mensaje=(f'Incidente {ticket_id}: {accion.tipo}. {accion.razon}. '
-             +(f'Orden de atención simulada: {resultado["orden"]["codigo"]}.' if 'orden' in resultado else
+             +(f'Orden de atención: {resultado["orden"]["codigo"]}.' if 'orden' in resultado else
                'Se requiere descripción adicional.' if accion.tipo=='solicitar_info' else 'El caso requiere revisión humana.'))
     notificacion=ejecutar(notificar_solicitante,{'solicitante_id':ticket['solicitante_id'],'mensaje':mensaje})
     resultado['notificacion']=notificacion

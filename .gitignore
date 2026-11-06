@@ -11,3 +11,5 @@ evidence/videos/*.mp4
 .streamlit/secrets.toml
 apikey*
 tmp/
+deliverables/*.docx
+deliverables/*.pdf

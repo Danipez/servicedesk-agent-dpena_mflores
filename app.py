@@ -14,7 +14,7 @@ if 'historial' not in st.session_state:
     st.session_state.historial=[]
 with st.sidebar:
     st.title('🛠️ ServiceDesk Andina')
-    st.caption('Agente de soporte empresarial · EP2 ISY0101')
+    st.caption('Gestión de incidentes de soporte')
     st.markdown('### Casos de ejemplo')
     st.code('INC-001 → estándar\nINC-015 → sin cobertura\nINC-022 → alto costo\nINC-030 → recurrencia\nINC-035 → falta información\nINC-040 → SLA excedido')
     st.caption('Repetir INC-001 demuestra atención preferente por memoria.')
@@ -27,9 +27,9 @@ with st.sidebar:
 st.title('Agente de Soporte ServiceDesk Andina')
 st.write('Automatización de la recepción y asignación de incidentes de soporte. '
          'El agente valida cobertura y SLA, genera órdenes o deriva a revisión humana.')
-st.caption('Entorno simulado: no se envían correos ni se realizan reparaciones o compras reales.')
+st.caption('Órdenes de atención y notificaciones registradas en el sistema local.')
 if not DB_PATH.exists():
-    st.error('Prepara los datos: python -m scripts.generate_mock_data y python -m scripts.seed_data')
+    st.error('Prepara los datos: python -m scripts.generate_data y python -m scripts.seed_data')
     st.stop()
 atencion, conversacion=st.tabs(['Procesar incidente','Asistente Gemini'])
 with atencion:
@@ -57,7 +57,7 @@ with atencion:
             st.caption(f'**Razón:** {ultimo["razon"]}')
             st.write(f'Prioridad: **{ultimo["prioridad"]["prioridad"]}** · Costo estimado: **${ultimo["ticket"]["costo_estimado"]:,} CLP**')
             if ultimo.get('orden'):
-                st.success(f'Orden de atención simulada: {ultimo["orden"]["codigo"]}')
+                st.success(f'Orden de atención: {ultimo["orden"]["codigo"]}')
             if ultimo.get('aviso'):
                 st.warning(ultimo['aviso'])
             with st.expander('🔍 Decisión y traza de herramientas',expanded=True):

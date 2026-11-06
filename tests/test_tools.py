@@ -32,7 +32,7 @@ def test_prioridad_critica():
 def test_orden_idempotente():
     a=generar_orden.invoke({'ticket_id':'INC-001'})
     b=generar_orden.invoke({'ticket_id':'INC-001'})
-    assert a['codigo']==b['codigo'] and a['simulada'] is True
+    assert a['codigo']==b['codigo'] and a['almacenamiento']=='sqlite'
 
 def test_orden_alto_costo_bloqueada():
     assert generar_orden.invoke({'ticket_id':'INC-022'})['ok'] is False

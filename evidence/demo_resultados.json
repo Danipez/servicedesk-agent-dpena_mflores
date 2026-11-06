@@ -16,6 +16,7 @@
       "impacto": "individual",
       "urgencia": "normal",
       "horas_transcurridas": 1,
+      "moneda": "CLP",
       "historial_solicitante": [],
       "incidentes_previos_90d": 0
     },
@@ -33,32 +34,32 @@
         "tipo": "caso",
         "texto": "Incidente de mouse que no responde, cobertura vigente, se generó orden estándar P3.",
         "meta": {
-          "id": "C1",
-          "fuente": "caso_previo"
+          "fuente": "caso_previo",
+          "id": "C1"
         }
       },
       {
         "tipo": "caso",
         "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
         "meta": {
-          "fuente": "caso_previo",
-          "id": "C3"
+          "id": "C3",
+          "fuente": "caso_previo"
         }
       },
       {
         "tipo": "politica",
         "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
         "meta": {
-          "fuente": "politicas.md",
-          "seccion": "S5"
+          "seccion": "S5",
+          "fuente": "politicas.md"
         }
       },
       {
         "tipo": "politica",
-        "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+        "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones se registran en SQLite para auditoría. Las notificaciones utilizan el canal local.",
         "meta": {
-          "seccion": "S6",
-          "fuente": "politicas.md"
+          "fuente": "politicas.md",
+          "seccion": "S6"
         }
       }
     ],
@@ -80,6 +81,7 @@
           "impacto": "individual",
           "urgencia": "normal",
           "horas_transcurridas": 1,
+          "moneda": "CLP",
           "historial_solicitante": [],
           "incidentes_previos_90d": 0
         }
@@ -115,32 +117,32 @@
             "tipo": "caso",
             "texto": "Incidente de mouse que no responde, cobertura vigente, se generó orden estándar P3.",
             "meta": {
-              "id": "C1",
-              "fuente": "caso_previo"
+              "fuente": "caso_previo",
+              "id": "C1"
             }
           },
           {
             "tipo": "caso",
             "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
             "meta": {
-              "fuente": "caso_previo",
-              "id": "C3"
+              "id": "C3",
+              "fuente": "caso_previo"
             }
           },
           {
             "tipo": "politica",
             "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
             "meta": {
-              "fuente": "politicas.md",
-              "seccion": "S5"
+              "seccion": "S5",
+              "fuente": "politicas.md"
             }
           },
           {
             "tipo": "politica",
-            "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+            "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones se registran en SQLite para auditoría. Las notificaciones utilizan el canal local.",
             "meta": {
-              "seccion": "S6",
-              "fuente": "politicas.md"
+              "fuente": "politicas.md",
+              "seccion": "S6"
             }
           }
         ]
@@ -166,11 +168,11 @@
         "salida": {
           "ok": true,
           "ticket_id": "INC-001",
-          "codigo": "OT-INC-001-F5158C",
+          "codigo": "OT-INC-001-C40C21",
           "prioridad": "P3",
           "equipo": "Soporte nivel 1",
           "estado": "pendiente",
-          "simulada": true
+          "almacenamiento": "sqlite"
         }
       },
       {
@@ -190,11 +192,11 @@
         "herramienta": "notificar_solicitante",
         "entrada": {
           "solicitante_id": "S-001",
-          "mensaje": "Incidente INC-001: resolver_estandar. Incidente cubierto, completo y dentro de umbrales. Orden de atención simulada: OT-INC-001-F5158C."
+          "mensaje": "Incidente INC-001: resolver_estandar. Incidente cubierto, completo y dentro de umbrales. Orden de atención: OT-INC-001-C40C21."
         },
         "salida": {
           "ok": true,
-          "canal": "mock",
+          "canal": "local",
           "solicitante_id": "S-001"
         }
       }
@@ -202,18 +204,18 @@
     "orden": {
       "ok": true,
       "ticket_id": "INC-001",
-      "codigo": "OT-INC-001-F5158C",
+      "codigo": "OT-INC-001-C40C21",
       "prioridad": "P3",
       "equipo": "Soporte nivel 1",
       "estado": "pendiente",
-      "simulada": true
+      "almacenamiento": "sqlite"
     },
     "notificacion": {
       "ok": true,
-      "canal": "mock",
+      "canal": "local",
       "solicitante_id": "S-001"
     },
-    "duracion_segundos": 5.965
+    "duracion_segundos": 5.906
   },
   {
     "ok": true,
@@ -232,12 +234,13 @@
       "impacto": "individual",
       "urgencia": "normal",
       "horas_transcurridas": 1,
+      "moneda": "CLP",
       "historial_solicitante": [
         {
           "id": 1,
           "solicitante_id": "S-001",
           "ticket_id": "INC-001",
-          "fecha": "2026-11-06T15:11:28.032141+00:00",
+          "fecha": "2026-11-06T16:26:05.513381+00:00",
           "decision": "resolver_estandar",
           "costo": 25000,
           "motivo": "Incidente cubierto, completo y dentro de umbrales"
@@ -267,8 +270,8 @@
         "tipo": "caso",
         "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
         "meta": {
-          "id": "C3",
-          "fuente": "caso_previo"
+          "fuente": "caso_previo",
+          "id": "C3"
         }
       },
       {
@@ -281,7 +284,7 @@
       },
       {
         "tipo": "politica",
-        "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+        "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones se registran en SQLite para auditoría. Las notificaciones utilizan el canal local.",
         "meta": {
           "fuente": "politicas.md",
           "seccion": "S6"
@@ -306,12 +309,13 @@
           "impacto": "individual",
           "urgencia": "normal",
           "horas_transcurridas": 1,
+          "moneda": "CLP",
           "historial_solicitante": [
             {
               "id": 1,
               "solicitante_id": "S-001",
               "ticket_id": "INC-001",
-              "fecha": "2026-11-06T15:11:28.032141+00:00",
+              "fecha": "2026-11-06T16:26:05.513381+00:00",
               "decision": "resolver_estandar",
               "costo": 25000,
               "motivo": "Incidente cubierto, completo y dentro de umbrales"
@@ -359,8 +363,8 @@
             "tipo": "caso",
             "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
             "meta": {
-              "id": "C3",
-              "fuente": "caso_previo"
+              "fuente": "caso_previo",
+              "id": "C3"
             }
           },
           {
@@ -373,7 +377,7 @@
           },
           {
             "tipo": "politica",
-            "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+            "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones se registran en SQLite para auditoría. Las notificaciones utilizan el canal local.",
             "meta": {
               "fuente": "politicas.md",
               "seccion": "S6"
@@ -402,11 +406,11 @@
         "salida": {
           "ok": true,
           "ticket_id": "INC-001",
-          "codigo": "OT-INC-001-F5158C",
+          "codigo": "OT-INC-001-C40C21",
           "prioridad": "P3",
           "equipo": "Soporte nivel 1",
           "estado": "pendiente",
-          "simulada": true
+          "almacenamiento": "sqlite"
         }
       },
       {
@@ -426,11 +430,11 @@
         "herramienta": "notificar_solicitante",
         "entrada": {
           "solicitante_id": "S-001",
-          "mensaje": "Incidente INC-001: resolver_preferente. Solicitante conocido, contexto completo y costo bajo. Orden de atención simulada: OT-INC-001-F5158C."
+          "mensaje": "Incidente INC-001: resolver_preferente. Solicitante conocido, contexto completo y costo bajo. Orden de atención: OT-INC-001-C40C21."
         },
         "salida": {
           "ok": true,
-          "canal": "mock",
+          "canal": "local",
           "solicitante_id": "S-001"
         }
       }
@@ -438,18 +442,18 @@
     "orden": {
       "ok": true,
       "ticket_id": "INC-001",
-      "codigo": "OT-INC-001-F5158C",
+      "codigo": "OT-INC-001-C40C21",
       "prioridad": "P3",
       "equipo": "Soporte nivel 1",
       "estado": "pendiente",
-      "simulada": true
+      "almacenamiento": "sqlite"
     },
     "notificacion": {
       "ok": true,
-      "canal": "mock",
+      "canal": "local",
       "solicitante_id": "S-001"
     },
-    "duracion_segundos": 0.024
+    "duracion_segundos": 0.022
   },
   {
     "ok": true,
@@ -468,6 +472,7 @@
       "impacto": "individual",
       "urgencia": "normal",
       "horas_transcurridas": 45,
+      "moneda": "CLP",
       "historial_solicitante": [],
       "incidentes_previos_90d": 0
     },
@@ -493,24 +498,24 @@
         "tipo": "caso",
         "texto": "Impresora sin conexión con SLA excedido: escalamiento al coordinador de soporte.",
         "meta": {
-          "id": "C4",
-          "fuente": "caso_previo"
+          "fuente": "caso_previo",
+          "id": "C4"
         }
       },
       {
         "tipo": "politica",
-        "texto": "Recurrencia\nTres o más incidentes del mismo solicitante en 90 días requieren revisión de causa raíz por soporte nivel 2. El conteo incluye antecedentes simulados y tickets distintos atendidos, sin duplicar reintentos del mismo ticket.",
+        "texto": "Recurrencia\nTres o más incidentes del mismo solicitante en 90 días requieren revisión de causa raíz por soporte nivel 2. El conteo incluye antecedentes registrados y tickets distintos atendidos, sin duplicar reintentos del mismo ticket.",
         "meta": {
-          "fuente": "politicas.md",
-          "seccion": "S3"
+          "seccion": "S3",
+          "fuente": "politicas.md"
         }
       },
       {
         "tipo": "politica",
         "texto": "Atención preferente\nSi existe historial de atención, el costo es menor a $50.000 y la descripción está completa, se genera orden preferente. Un historial previo no autoriza saltarse cobertura, costo ni recurrencia.",
         "meta": {
-          "fuente": "politicas.md",
-          "seccion": "S4"
+          "seccion": "S4",
+          "fuente": "politicas.md"
         }
       }
     ],
@@ -532,6 +537,7 @@
           "impacto": "individual",
           "urgencia": "normal",
           "horas_transcurridas": 45,
+          "moneda": "CLP",
           "historial_solicitante": [],
           "incidentes_previos_90d": 0
         }
@@ -575,24 +581,24 @@
             "tipo": "caso",
             "texto": "Impresora sin conexión con SLA excedido: escalamiento al coordinador de soporte.",
             "meta": {
-              "id": "C4",
-              "fuente": "caso_previo"
+              "fuente": "caso_previo",
+              "id": "C4"
             }
           },
           {
             "tipo": "politica",
-            "texto": "Recurrencia\nTres o más incidentes del mismo solicitante en 90 días requieren revisión de causa raíz por soporte nivel 2. El conteo incluye antecedentes simulados y tickets distintos atendidos, sin duplicar reintentos del mismo ticket.",
+            "texto": "Recurrencia\nTres o más incidentes del mismo solicitante en 90 días requieren revisión de causa raíz por soporte nivel 2. El conteo incluye antecedentes registrados y tickets distintos atendidos, sin duplicar reintentos del mismo ticket.",
             "meta": {
-              "fuente": "politicas.md",
-              "seccion": "S3"
+              "seccion": "S3",
+              "fuente": "politicas.md"
             }
           },
           {
             "tipo": "politica",
             "texto": "Atención preferente\nSi existe historial de atención, el costo es menor a $50.000 y la descripción está completa, se genera orden preferente. Un historial previo no autoriza saltarse cobertura, costo ni recurrencia.",
             "meta": {
-              "fuente": "politicas.md",
-              "seccion": "S4"
+              "seccion": "S4",
+              "fuente": "politicas.md"
             }
           }
         ]
@@ -630,17 +636,17 @@
         },
         "salida": {
           "ok": true,
-          "canal": "mock",
+          "canal": "local",
           "solicitante_id": "S-015"
         }
       }
     ],
     "notificacion": {
       "ok": true,
-      "canal": "mock",
+      "canal": "local",
       "solicitante_id": "S-015"
     },
-    "duracion_segundos": 0.021
+    "duracion_segundos": 0.02
   },
   {
     "ok": true,
@@ -659,6 +665,7 @@
       "impacto": "individual",
       "urgencia": "normal",
       "horas_transcurridas": 4,
+      "moneda": "CLP",
       "historial_solicitante": [],
       "incidentes_previos_90d": 0
     },
@@ -676,8 +683,8 @@
         "tipo": "caso",
         "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
         "meta": {
-          "id": "C3",
-          "fuente": "caso_previo"
+          "fuente": "caso_previo",
+          "id": "C3"
         }
       },
       {
@@ -700,8 +707,8 @@
         "tipo": "politica",
         "texto": "Atención preferente\nSi existe historial de atención, el costo es menor a $50.000 y la descripción está completa, se genera orden preferente. Un historial previo no autoriza saltarse cobertura, costo ni recurrencia.",
         "meta": {
-          "seccion": "S4",
-          "fuente": "politicas.md"
+          "fuente": "politicas.md",
+          "seccion": "S4"
         }
       }
     ],
@@ -723,6 +730,7 @@
           "impacto": "individual",
           "urgencia": "normal",
           "horas_transcurridas": 4,
+          "moneda": "CLP",
           "historial_solicitante": [],
           "incidentes_previos_90d": 0
         }
@@ -758,8 +766,8 @@
             "tipo": "caso",
             "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
             "meta": {
-              "id": "C3",
-              "fuente": "caso_previo"
+              "fuente": "caso_previo",
+              "id": "C3"
             }
           },
           {
@@ -782,8 +790,8 @@
             "tipo": "politica",
             "texto": "Atención preferente\nSi existe historial de atención, el costo es menor a $50.000 y la descripción está completa, se genera orden preferente. Un historial previo no autoriza saltarse cobertura, costo ni recurrencia.",
             "meta": {
-              "seccion": "S4",
-              "fuente": "politicas.md"
+              "fuente": "politicas.md",
+              "seccion": "S4"
             }
           }
         ]
@@ -821,17 +829,17 @@
         },
         "salida": {
           "ok": true,
-          "canal": "mock",
+          "canal": "local",
           "solicitante_id": "S-012"
         }
       }
     ],
     "notificacion": {
       "ok": true,
-      "canal": "mock",
+      "canal": "local",
       "solicitante_id": "S-012"
     },
-    "duracion_segundos": 0.022
+    "duracion_segundos": 0.019
   },
   {
     "ok": true,
@@ -850,6 +858,7 @@
       "impacto": "individual",
       "urgencia": "normal",
       "horas_transcurridas": 3,
+      "moneda": "CLP",
       "historial_solicitante": [],
       "incidentes_previos_90d": 3
     },
@@ -875,24 +884,24 @@
         "tipo": "caso",
         "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
         "meta": {
-          "fuente": "caso_previo",
-          "id": "C3"
+          "id": "C3",
+          "fuente": "caso_previo"
         }
       },
       {
         "tipo": "politica",
         "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
         "meta": {
-          "fuente": "politicas.md",
-          "seccion": "S5"
+          "seccion": "S5",
+          "fuente": "politicas.md"
         }
       },
       {
         "tipo": "politica",
-        "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+        "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones se registran en SQLite para auditoría. Las notificaciones utilizan el canal local.",
         "meta": {
-          "seccion": "S6",
-          "fuente": "politicas.md"
+          "fuente": "politicas.md",
+          "seccion": "S6"
         }
       }
     ],
@@ -914,6 +923,7 @@
           "impacto": "individual",
           "urgencia": "normal",
           "horas_transcurridas": 3,
+          "moneda": "CLP",
           "historial_solicitante": [],
           "incidentes_previos_90d": 3
         }
@@ -957,24 +967,24 @@
             "tipo": "caso",
             "texto": "Solicitante con cinco incidentes en 90 días: soporte nivel 2 investiga causa raíz.",
             "meta": {
-              "fuente": "caso_previo",
-              "id": "C3"
+              "id": "C3",
+              "fuente": "caso_previo"
             }
           },
           {
             "tipo": "politica",
             "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
             "meta": {
-              "fuente": "politicas.md",
-              "seccion": "S5"
+              "seccion": "S5",
+              "fuente": "politicas.md"
             }
           },
           {
             "tipo": "politica",
-            "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+            "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones se registran en SQLite para auditoría. Las notificaciones utilizan el canal local.",
             "meta": {
-              "seccion": "S6",
-              "fuente": "politicas.md"
+              "fuente": "politicas.md",
+              "seccion": "S6"
             }
           }
         ]
@@ -1012,17 +1022,17 @@
         },
         "salida": {
           "ok": true,
-          "canal": "mock",
+          "canal": "local",
           "solicitante_id": "S-003"
         }
       }
     ],
     "notificacion": {
       "ok": true,
-      "canal": "mock",
+      "canal": "local",
       "solicitante_id": "S-003"
     },
-    "duracion_segundos": 0.02
+    "duracion_segundos": 0.018
   },
   {
     "ok": true,
@@ -1041,6 +1051,7 @@
       "impacto": "individual",
       "urgencia": "normal",
       "horas_transcurridas": 8,
+      "moneda": "CLP",
       "historial_solicitante": [],
       "incidentes_previos_90d": 0
     },
@@ -1072,7 +1083,7 @@
       },
       {
         "tipo": "politica",
-        "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+        "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones se registran en SQLite para auditoría. Las notificaciones utilizan el canal local.",
         "meta": {
           "seccion": "S6",
           "fuente": "politicas.md"
@@ -1082,8 +1093,8 @@
         "tipo": "politica",
         "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
         "meta": {
-          "fuente": "politicas.md",
-          "seccion": "S5"
+          "seccion": "S5",
+          "fuente": "politicas.md"
         }
       }
     ],
@@ -1105,6 +1116,7 @@
           "impacto": "individual",
           "urgencia": "normal",
           "horas_transcurridas": 8,
+          "moneda": "CLP",
           "historial_solicitante": [],
           "incidentes_previos_90d": 0
         }
@@ -1154,7 +1166,7 @@
           },
           {
             "tipo": "politica",
-            "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones son simuladas y se registran en SQLite para auditoría.",
+            "texto": "Atención estándar y comunicación\nUn incidente cubierto y completo que no activa una regla anterior sigue el flujo estándar. La prioridad P1 corresponde a impacto empresarial, P2 a urgencia alta individual y P3 al resto. Las órdenes y notificaciones se registran en SQLite para auditoría. Las notificaciones utilizan el canal local.",
             "meta": {
               "seccion": "S6",
               "fuente": "politicas.md"
@@ -1164,8 +1176,8 @@
             "tipo": "politica",
             "texto": "Información requerida\nEl número de incidente y una descripción de la falla son necesarios. Si falta descripción, se solicita información antes de generar una orden. Un texto nuevo puede completar el incidente pendiente.",
             "meta": {
-              "fuente": "politicas.md",
-              "seccion": "S5"
+              "seccion": "S5",
+              "fuente": "politicas.md"
             }
           }
         ]
@@ -1203,17 +1215,17 @@
         },
         "salida": {
           "ok": true,
-          "canal": "mock",
+          "canal": "local",
           "solicitante_id": "S-005"
         }
       }
     ],
     "notificacion": {
       "ok": true,
-      "canal": "mock",
+      "canal": "local",
       "solicitante_id": "S-005"
     },
-    "duracion_segundos": 0.017
+    "duracion_segundos": 0.016
   },
   {
     "ok": true,
@@ -1232,12 +1244,13 @@
       "impacto": "empresa",
       "urgencia": "alta",
       "horas_transcurridas": 3,
+      "moneda": "CLP",
       "historial_solicitante": [
         {
           "id": 2,
           "solicitante_id": "S-001",
           "ticket_id": "INC-001",
-          "fecha": "2026-11-06T15:11:28.056652+00:00",
+          "fecha": "2026-11-06T16:26:05.534901+00:00",
           "decision": "resolver_preferente",
           "costo": 25000,
           "motivo": "Solicitante conocido, contexto completo y costo bajo"
@@ -1246,7 +1259,7 @@
           "id": 1,
           "solicitante_id": "S-001",
           "ticket_id": "INC-001",
-          "fecha": "2026-11-06T15:11:28.032141+00:00",
+          "fecha": "2026-11-06T16:26:05.513381+00:00",
           "decision": "resolver_estandar",
           "costo": 25000,
           "motivo": "Incidente cubierto, completo y dentro de umbrales"
@@ -1276,13 +1289,13 @@
         "tipo": "caso",
         "texto": "Impresora sin conexión con SLA excedido: escalamiento al coordinador de soporte.",
         "meta": {
-          "id": "C4",
-          "fuente": "caso_previo"
+          "fuente": "caso_previo",
+          "id": "C4"
         }
       },
       {
         "tipo": "politica",
-        "texto": "Recurrencia\nTres o más incidentes del mismo solicitante en 90 días requieren revisión de causa raíz por soporte nivel 2. El conteo incluye antecedentes simulados y tickets distintos atendidos, sin duplicar reintentos del mismo ticket.",
+        "texto": "Recurrencia\nTres o más incidentes del mismo solicitante en 90 días requieren revisión de causa raíz por soporte nivel 2. El conteo incluye antecedentes registrados y tickets distintos atendidos, sin duplicar reintentos del mismo ticket.",
         "meta": {
           "seccion": "S3",
           "fuente": "politicas.md"
@@ -1292,8 +1305,8 @@
         "tipo": "politica",
         "texto": "Atención preferente\nSi existe historial de atención, el costo es menor a $50.000 y la descripción está completa, se genera orden preferente. Un historial previo no autoriza saltarse cobertura, costo ni recurrencia.",
         "meta": {
-          "fuente": "politicas.md",
-          "seccion": "S4"
+          "seccion": "S4",
+          "fuente": "politicas.md"
         }
       }
     ],
@@ -1315,12 +1328,13 @@
           "impacto": "empresa",
           "urgencia": "alta",
           "horas_transcurridas": 3,
+          "moneda": "CLP",
           "historial_solicitante": [
             {
               "id": 2,
               "solicitante_id": "S-001",
               "ticket_id": "INC-001",
-              "fecha": "2026-11-06T15:11:28.056652+00:00",
+              "fecha": "2026-11-06T16:26:05.534901+00:00",
               "decision": "resolver_preferente",
               "costo": 25000,
               "motivo": "Solicitante conocido, contexto completo y costo bajo"
@@ -1329,7 +1343,7 @@
               "id": 1,
               "solicitante_id": "S-001",
               "ticket_id": "INC-001",
-              "fecha": "2026-11-06T15:11:28.032141+00:00",
+              "fecha": "2026-11-06T16:26:05.513381+00:00",
               "decision": "resolver_estandar",
               "costo": 25000,
               "motivo": "Incidente cubierto, completo y dentro de umbrales"
@@ -1377,13 +1391,13 @@
             "tipo": "caso",
             "texto": "Impresora sin conexión con SLA excedido: escalamiento al coordinador de soporte.",
             "meta": {
-              "id": "C4",
-              "fuente": "caso_previo"
+              "fuente": "caso_previo",
+              "id": "C4"
             }
           },
           {
             "tipo": "politica",
-            "texto": "Recurrencia\nTres o más incidentes del mismo solicitante en 90 días requieren revisión de causa raíz por soporte nivel 2. El conteo incluye antecedentes simulados y tickets distintos atendidos, sin duplicar reintentos del mismo ticket.",
+            "texto": "Recurrencia\nTres o más incidentes del mismo solicitante en 90 días requieren revisión de causa raíz por soporte nivel 2. El conteo incluye antecedentes registrados y tickets distintos atendidos, sin duplicar reintentos del mismo ticket.",
             "meta": {
               "seccion": "S3",
               "fuente": "politicas.md"
@@ -1393,8 +1407,8 @@
             "tipo": "politica",
             "texto": "Atención preferente\nSi existe historial de atención, el costo es menor a $50.000 y la descripción está completa, se genera orden preferente. Un historial previo no autoriza saltarse cobertura, costo ni recurrencia.",
             "meta": {
-              "fuente": "politicas.md",
-              "seccion": "S4"
+              "seccion": "S4",
+              "fuente": "politicas.md"
             }
           }
         ]
@@ -1432,17 +1446,17 @@
         },
         "salida": {
           "ok": true,
-          "canal": "mock",
+          "canal": "local",
           "solicitante_id": "S-001"
         }
       }
     ],
     "notificacion": {
       "ok": true,
-      "canal": "mock",
+      "canal": "local",
       "solicitante_id": "S-001"
     },
-    "duracion_segundos": 0.02
+    "duracion_segundos": 0.017
   },
   {
     "ok": true,
@@ -1461,12 +1475,13 @@
       "impacto": "individual",
       "urgencia": "normal",
       "horas_transcurridas": 8,
+      "moneda": "CLP",
       "historial_solicitante": [
         {
           "id": 6,
           "solicitante_id": "S-005",
           "ticket_id": "INC-035",
-          "fecha": "2026-11-06T15:11:28.135193+00:00",
+          "fecha": "2026-11-06T16:26:05.607974+00:00",
           "decision": "solicitar_info",
           "costo": 65000,
           "motivo": "Falta descripción de la falla"
@@ -1535,12 +1550,13 @@
           "impacto": "individual",
           "urgencia": "normal",
           "horas_transcurridas": 8,
+          "moneda": "CLP",
           "historial_solicitante": [
             {
               "id": 6,
               "solicitante_id": "S-005",
               "ticket_id": "INC-035",
-              "fecha": "2026-11-06T15:11:28.135193+00:00",
+              "fecha": "2026-11-06T16:26:05.607974+00:00",
               "decision": "solicitar_info",
               "costo": 65000,
               "motivo": "Falta descripción de la falla"
@@ -1631,11 +1647,11 @@
         "salida": {
           "ok": true,
           "ticket_id": "INC-035",
-          "codigo": "OT-INC-035-F3B17A",
+          "codigo": "OT-INC-035-8A4F49",
           "prioridad": "P3",
           "equipo": "Soporte nivel 1",
           "estado": "pendiente",
-          "simulada": true
+          "almacenamiento": "sqlite"
         }
       },
       {
@@ -1655,11 +1671,11 @@
         "herramienta": "notificar_solicitante",
         "entrada": {
           "solicitante_id": "S-005",
-          "mensaje": "Incidente INC-035: resolver_estandar. Incidente cubierto, completo y dentro de umbrales. Orden de atención simulada: OT-INC-035-F3B17A."
+          "mensaje": "Incidente INC-035: resolver_estandar. Incidente cubierto, completo y dentro de umbrales. Orden de atención: OT-INC-035-8A4F49."
         },
         "salida": {
           "ok": true,
-          "canal": "mock",
+          "canal": "local",
           "solicitante_id": "S-005"
         }
       }
@@ -1667,15 +1683,15 @@
     "orden": {
       "ok": true,
       "ticket_id": "INC-035",
-      "codigo": "OT-INC-035-F3B17A",
+      "codigo": "OT-INC-035-8A4F49",
       "prioridad": "P3",
       "equipo": "Soporte nivel 1",
       "estado": "pendiente",
-      "simulada": true
+      "almacenamiento": "sqlite"
     },
     "notificacion": {
       "ok": true,
-      "canal": "mock",
+      "canal": "local",
       "solicitante_id": "S-005"
     }
   }

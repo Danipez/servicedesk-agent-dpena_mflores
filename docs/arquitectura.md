@@ -16,7 +16,7 @@ SQLite guarda decisiones, órdenes y notificaciones. consultar_ticket recupera t
 
 ## Memoria semántica
 
-all-MiniLM-L6-v2 genera embeddings locales. Chroma persiste dos colecciones: seis secciones de políticas y cuatro casos ficticios. buscar_casos_similares recupera dos resultados de cada colección con metadatos. La indexación utiliza identificadores estables. No se suben los vectores: se reconstruyen con el script. Una falla de recuperación deja un aviso visible y mantiene las reglas estructuradas.
+all-MiniLM-L6-v2 genera embeddings locales. Chroma persiste dos colecciones: seis secciones de políticas y cuatro casos de referencia. buscar_casos_similares recupera dos resultados de cada colección con metadatos. La indexación utiliza identificadores estables. No se suben los vectores: se reconstruyen con el script. Una falla de recuperación deja un aviso visible y mantiene las reglas estructuradas.
 
 ## Compatibilidad de Gemini
 

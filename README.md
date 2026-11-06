@@ -1,12 +1,12 @@
 # ServiceDesk Andina
 
-Agente funcional de recepción y asignación de incidentes de soporte empresarial. Consulta tickets, valida cobertura y SLA, calcula prioridad y genera una orden de atención simulada o deriva el caso. Registra decisiones y notificaciones; recupera historial y políticas por significado.
+Agente funcional de recepción y asignación de incidentes de soporte empresarial. Consulta tickets, valida cobertura y SLA, calcula prioridad y genera una orden de atención o deriva el caso. Registra decisiones y notificaciones; recupera historial y políticas por significado.
 
 **Integrantes:** Daniela Peña y Mirko Flores. **Asignatura:** Ingeniería de Soluciones con IA, ISY0101, EP2.
 
 ## Problema y alcance
 
-Una empresa ficticia de servicios administrativos necesita reducir la clasificación manual de incidentes, evitar órdenes sin cobertura y reconocer fallas recurrentes. El agente automatiza el triage y la asignación. No repara equipos ni envía comunicaciones reales. Los datos son ficticios: 40 incidentes y 15 solicitantes.
+ServiceDesk Andina aborda la clasificación de incidentes, la validación de cobertura y el reconocimiento de fallas recurrentes en una mesa de ayuda. El agente automatiza el triage y la asignación. La versión actual almacena órdenes y notificaciones en SQLite; la reparación técnica y el envío externo de comunicaciones quedan fuera de su alcance. El conjunto de prueba contiene 40 incidentes y 15 solicitantes.
 
 ## Arquitectura
 
@@ -44,7 +44,7 @@ El flujo estructurado aplica seis reglas deterministas y conserva una traza. El 
 | calcular_prioridad | ticket_id | P1, P2 o P3 y tiempo objetivo |
 | generar_orden | ticket_id, descripcion opcional | Orden local única; valida reglas antes de escribir |
 | actualizar_crm | ticket_id, estado, nota, descripcion | Un evento de decisión; rechaza estados incompatibles |
-| notificar_solicitante | solicitante_id, mensaje | Notificación persistida, canal mock |
+| notificar_solicitante | solicitante_id, mensaje | Notificación persistida, canal local |
 | buscar_casos_similares | texto | Dos políticas y dos casos con fuente y sección |
 
 ## Reglas de decisión
@@ -58,7 +58,7 @@ El flujo estructurado aplica seis reglas deterministas y conserva una traza. El 
 | 5 | Sin descripción | solicitar_info |
 | 6 | Resto de casos cubiertos | resolver_estandar |
 
-El orden es estricto y la primera coincidencia determina la acción. La regla 4 exige información completa para evitar que la preferencia omita datos necesarios. Un escalamiento o una solicitud de aprobación no generan órdenes. P1 identifica impacto empresarial, P2 urgencia alta individual y P3 el resto. El escenario usa horas transcurridas simuladas, no un reloj de SLA productivo.
+El orden es estricto y la primera coincidencia determina la acción. La regla 4 exige información completa para evitar que la preferencia omita datos necesarios. Un escalamiento o una solicitud de aprobación no generan órdenes. P1 identifica impacto empresarial, P2 urgencia alta individual y P3 el resto. El SLA se evalúa con las horas transcurridas registradas en el incidente.
 
 ## Instalación desde cero
 
@@ -78,7 +78,7 @@ En macOS o Linux, sustituir la activación por `source .venv/bin/activate` y la 
 Editar `.env` y completar `GOOGLE_API_KEY`; `LLM_MODEL` selecciona el modelo. La clave nunca se agrega al código. El flujo estructurado puede usarse sin Gemini. El modelo requiere cuota en la cuenta; una clave válida no garantiza cuota gratuita.
 
 ```powershell
-python -m scripts.generate_mock_data
+python -m scripts.generate_data
 python -m scripts.seed_data
 python -m scripts.index_politicas
 python -m scripts.verify_llm
@@ -116,7 +116,9 @@ La suite verifica las seis reglas y límites, herramientas, SQL parametrizado, �
 
 ## Estructura y entrega
 
-`agent/` contiene herramientas, memorias, planner y orquestador; `config/` la configuración; `scripts/` la preparación; `data/` los CSV y políticas; `tests/` las pruebas; `docs/` diagramas, contratos y guion; `evidence/` las verificaciones; `deliverables/` el informe.
+`agent/` contiene herramientas, memorias, planner y orquestador; `config/` la configuración; `scripts/` la preparación; `data/` los CSV y políticas; `tests/` las pruebas; `docs/` diagramas, contratos y guion; `evidence/` las verificaciones; `deliverables/` la presentación.
+
+La [presentación de ServiceDesk Andina](deliverables/presentacion_servicedesk_andina.pptx) contiene diez diapositivas editables y notas para una exposición de 9 minutos y 30 segundos, incluida la demostración. El [guion](docs/guion_demo.md) detalla los tiempos y los casos. Los informes se entregan por separado del código.
 
 Captura del caso estándar:
 

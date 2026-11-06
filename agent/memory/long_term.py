@@ -17,7 +17,7 @@ def obtener_historial(solicitante_id, limite=5):
     return [dict(r) for r in rows]
 
 def contar_incidentes_recientes(solicitante_id):
-    """Suma antecedentes mock y tickets distintos atendidos en los últimos 90 días."""
+    """Suma antecedentes registrados y tickets distintos atendidos en los últimos 90 días."""
     limite=(datetime.now(timezone.utc)-timedelta(days=90)).isoformat()
     with conectar() as conn:
         base=conn.execute('SELECT incidentes_previos_90d FROM solicitantes '

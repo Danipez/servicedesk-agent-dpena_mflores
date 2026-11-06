@@ -8,7 +8,7 @@ from agent.planner import construir_estado, decidir_accion
 
 @tool
 def generar_orden(ticket_id: str, descripcion: str = '') -> dict:
-    """Genera una orden mock solo si el planner autoriza atención; reutiliza la existente."""
+    """Genera una orden de atención solo si el planner autoriza atención; reutiliza la existente."""
     ticket=consultar_ticket.invoke({'ticket_id':ticket_id})
     if 'error' in ticket:
         return ticket
@@ -21,4 +21,4 @@ def generar_orden(ticket_id: str, descripcion: str = '') -> dict:
         conn.execute('INSERT OR IGNORE INTO ordenes VALUES (?,?,?,?,?)',
                      (ticket_id,codigo,prioridad,'Soporte nivel 1','pendiente'))
         r=conn.execute('SELECT * FROM ordenes WHERE ticket_id=?',(ticket_id,)).fetchone()
-    return {'ok':True,**dict(r),'simulada':True}
+    return {'ok':True,**dict(r),'almacenamiento':'sqlite'}

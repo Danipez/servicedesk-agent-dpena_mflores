@@ -4,7 +4,7 @@ Fecha: 6 de noviembre de 2026. Plataforma: Windows, Python 3.12.14.
 
 Se clonó el repositorio local en otra carpeta, sin .env, base SQLite ni índice Chroma. Se ejecutaron las instrucciones de preparación desde esa copia:
 
-1. `python -m scripts.generate_mock_data`: 40 incidentes y 15 solicitantes.
+1. `python -m scripts.generate_data`: 40 incidentes y 15 solicitantes.
 2. `python -m scripts.seed_data`: base nueva con cinco tablas.
 3. `python -m scripts.index_politicas`: seis políticas y cuatro casos.
 4. `python -m pytest tests -q`: 38 pruebas aprobadas en 3,32 segundos.
