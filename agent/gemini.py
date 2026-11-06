@@ -1,5 +1,7 @@
 """Adaptador LangChain para Gemini con preservación de firmas de herramientas."""
 import json
+import socket
+import time
 import urllib.error
 import urllib.request
 from typing import Any
@@ -8,6 +10,22 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage, ToolMessage
 from langchain_core.outputs import ChatGeneration, ChatResult
 from langchain_core.utils.function_calling import convert_to_openai_tool
+
+class GeminiServiceError(RuntimeError):
+    """Error de servicio con un mensaje que puede mostrarse sin revelar credenciales."""
+
+def mensaje_http(codigo):
+    mensajes={
+        400:'Gemini rechazó la consulta. Prueba iniciar una nueva conversación.',
+        401:'Gemini no aceptó la clave configurada.',
+        403:'La clave no tiene permiso para utilizar este servicio de Gemini.',
+        404:'El modelo configurado ya no está disponible. Revisa LLM_MODEL.',
+        429:'Gemini alcanzó el límite de consultas o la cuota disponible. Espera y vuelve a intentarlo; si persiste, revisa la cuota en Google AI Studio.',
+        500:'Gemini tuvo un problema temporal. Vuelve a intentarlo.',
+        502:'Gemini tuvo un problema temporal de conexión. Vuelve a intentarlo.',
+        503:'Gemini está temporalmente ocupado o no disponible. Vuelve a intentarlo.',
+        504:'Gemini tardó demasiado en responder. Vuelve a intentarlo.'}
+    return mensajes.get(codigo,f'Gemini no pudo completar la consulta (HTTP {codigo}).')
 
 class GeminiChatModel(BaseChatModel):
     model: str
@@ -66,11 +84,23 @@ class GeminiChatModel(BaseChatModel):
             f'https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent',
             data=json.dumps(body).encode('utf-8'),
             headers={'Content-Type':'application/json','x-goog-api-key':self.api_key.get_secret_value()})
-        try:
-            with urllib.request.urlopen(request,timeout=self.timeout) as response:
-                result=json.load(response)
-        except urllib.error.HTTPError as error:
-            raise RuntimeError(f'Gemini respondió HTTP {error.code}; revisa modelo, cuota y permisos.') from None
+        for intento in range(3):
+            try:
+                with urllib.request.urlopen(request,timeout=self.timeout) as response:
+                    result=json.load(response)
+                break
+            except urllib.error.HTTPError as error:
+                codigo=error.code
+                error.close()
+                if codigo in (429,500,502,503,504) and intento<2:
+                    time.sleep(intento+1)
+                    continue
+                raise GeminiServiceError(mensaje_http(codigo)) from None
+            except (urllib.error.URLError,TimeoutError,socket.timeout):
+                if intento<2:
+                    time.sleep(intento+1)
+                    continue
+                raise GeminiServiceError('No se pudo conectar con Gemini o se agotó el tiempo de espera. Comprueba internet y vuelve a intentarlo.') from None
         candidates=result.get('candidates',[])
         if not candidates:
             raise RuntimeError('Gemini no devolvió una respuesta utilizable')

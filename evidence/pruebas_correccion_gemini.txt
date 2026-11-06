@@ -1,0 +1,4 @@
+Verificacion 6 de noviembre de 2026
+Comando: python -m pytest tests -q --tb=short
+Resultado: 40 passed in 3.65s
+Consulta real INC-035: respuesta obtenida con cuatro herramientas de lectura; sin cambios en historial, ordenes ni notificaciones.

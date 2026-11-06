@@ -10,6 +10,7 @@ def consultar_ticket(ticket_id: str) -> dict:
     if row is None:
         return {'error': f'Ticket {ticket_id} no encontrado'}
     ticket=dict(row)
+    ticket['moneda']='CLP'
     ticket['historial_solicitante']=obtener_historial(ticket['solicitante_id'],3)
     ticket['incidentes_previos_90d']=contar_incidentes_recientes(ticket['solicitante_id'])
     return ticket

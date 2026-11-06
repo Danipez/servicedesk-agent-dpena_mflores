@@ -2,6 +2,8 @@
 import pandas as pd
 import streamlit as st
 from agent.core import procesar_solicitud, crear_agente
+from agent.gemini import GeminiServiceError
+import logging
 from agent.memory.short_term import crear_memoria_corto_plazo
 from config.settings import DB_PATH
 
@@ -74,19 +76,22 @@ with atencion:
         st.dataframe(pd.DataFrame([{'incidente':r['ticket_id'],'acción':r.get('accion','error'),
             'razón':r.get('razon',r.get('error',''))} for r in st.session_state.historial]),width='stretch')
 with conversacion:
-    st.write('Consulta políticas o solicita atención en lenguaje natural. El asistente puede utilizar las siete herramientas.')
+    st.write('Escribe una pregunta sobre un incidente. Por ejemplo: «Consulta INC-035 y dime qué información falta». Las consultas informativas no deben modificar el caso.')
     pregunta=st.text_input('Pregunta al agente',placeholder='Consulta INC-022 y explica por qué requiere aprobación')
     if st.button('Consultar con Gemini') and pregunta.strip():
         with st.spinner('Consultando al asistente...'):
             try:
-                if 'agente' not in st.session_state:
-                    st.session_state.agente=crear_agente(st.session_state.memoria)
+                st.session_state.agente=crear_agente(st.session_state.memoria)
                 respuesta=st.session_state.agente.invoke({'input':pregunta})
                 st.write(respuesta['output'])
                 with st.expander('Herramientas ejecutadas'):
                     st.json([{'herramienta':a.tool,'entrada':a.tool_input,'salida':v} for a,v in respuesta['intermediate_steps']])
-            except Exception:
-                st.error('Gemini no pudo responder. Revisa la clave, el modelo, la cuota y la conexión. La atención estructurada sigue disponible.')
+            except GeminiServiceError as error:
+                st.error(str(error))
+                st.caption('Tu pregunta es válida. Puedes volver a consultar; para la demostración también está disponible «Procesar incidente».')
+            except Exception as error:
+                logging.getLogger(__name__).error('Fallo del asistente: %s',type(error).__name__)
+                st.error('El asistente no pudo completar esta consulta. Inicia una nueva conversación y vuelve a intentarlo.')
     with st.expander('Memoria de la conversación'):
         for mensaje in st.session_state.memoria.chat_memory.messages:
             st.write(f'{mensaje.type}: {mensaje.content}')

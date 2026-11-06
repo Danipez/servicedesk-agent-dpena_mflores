@@ -1,0 +1,20 @@
+{
+  "consulta": "consulta sobre el caso INC-035",
+  "respuesta": "Aquí tienes los detalles y la evaluación del incidente **INC-035**:\n\n---\n\n### **Resumen del Incidente**\n* **ID Incidente:** INC-035\n* **Solicitante ID:** S-005\n* **Asunto:** Impresora sin conexión\n* **Descripción:** *(Sin descripción proporcionada)*\n* **Categoría:** Impresora\n* **Fecha de apertura:** 2025-10-13\n* **Horas transcurridas:** 8 horas\n* **Costo estimado:** $65.000 CLP\n* **Incidentes previos (90 días):** 0\n\n---\n\n### **Estado de SLA y Priorización**\n* **Cobertura:** Vigente\n* **SLA Horas:** 24 horas\n* **Estado SLA:** Elegible (dentro del tiempo límite de SLA)\n* **Impacto:** Individual | **Urgencia:** Normal\n* **Prioridad Calculada:** **P3** (Tiempo objetivo: 24 horas)\n\n---\n\n### **Evaluación de Políticas y Acción Sugerida**\n* **Decisión requerida:** `solicitar_info`\n* **Justificación:** El incidente se encuentra dentro de SLA y cuenta con cobertura vigente; sin embargo, carece de una descripción del problema. De acuerdo con las políticas del servicio, al faltar la descripción del fallo es necesario solicitar información adicional al usuario antes de generar cualquier orden de atención o proceder al registro.\n* **Fuente de Política:** `politicas.md`, **Sección S5** (*Información requerida*).\n\n---\n\n*(Nota: Al tratarse de una consulta informativa, únicamente se utilizaron herramientas de lectura. No se han actualizado registros en CRM, generado órdenes ni enviado notificaciones).*",
+  "herramientas": [
+    "consultar_ticket",
+    "validar_sla",
+    "calcular_prioridad",
+    "buscar_casos_similares"
+  ],
+  "registros_antes": {
+    "historial_solicitante": 5,
+    "ordenes": 2,
+    "notificaciones": 4
+  },
+  "registros_despues": {
+    "historial_solicitante": 5,
+    "ordenes": 2,
+    "notificaciones": 4
+  }
+}

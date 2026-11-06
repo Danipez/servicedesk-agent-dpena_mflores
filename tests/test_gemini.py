@@ -38,3 +38,32 @@ def test_sin_candidatos_informa_error(monkeypatch):
     monkeypatch.setattr(gemini.urllib.request,'urlopen',lambda *args,**kw:Respuesta({}))
     with pytest.raises(RuntimeError,match='respuesta utilizable'):
         GeminiChatModel(model='prueba',api_key='secreto').invoke('Hola')
+
+def test_reintenta_error_temporal(monkeypatch):
+    from agent import gemini
+    import io
+    llamadas=[]
+    def responder(*args,**kwargs):
+        llamadas.append(1)
+        if len(llamadas)==1:
+            raise gemini.urllib.error.HTTPError('https://example.com',503,'ocupado',{},io.BytesIO())
+        return Respuesta({'candidates':[{'content':{'parts':[{'text':'Disponible'}]}}]})
+    monkeypatch.setattr(gemini.urllib.request,'urlopen',responder)
+    monkeypatch.setattr(gemini.time,'sleep',lambda n:None)
+    assert GeminiChatModel(model='prueba',api_key='secreto').invoke('Hola').content=='Disponible'
+    assert len(llamadas)==2
+
+def test_cuota_agotada_informa_causa_sin_secretos(monkeypatch):
+    from agent import gemini
+    import io
+    import pytest
+    llamadas=[]
+    def responder(*args,**kwargs):
+        llamadas.append(1)
+        raise gemini.urllib.error.HTTPError('https://example.com',429,'secreto',{},io.BytesIO())
+    monkeypatch.setattr(gemini.urllib.request,'urlopen',responder)
+    monkeypatch.setattr(gemini.time,'sleep',lambda n:None)
+    with pytest.raises(gemini.GeminiServiceError,match='cuota') as error:
+        GeminiChatModel(model='prueba',api_key='secreto').invoke('Hola')
+    assert 'secreto' not in str(error.value)
+    assert len(llamadas)==3
