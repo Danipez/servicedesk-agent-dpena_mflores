@@ -118,7 +118,7 @@ La suite verifica las seis reglas y límites, herramientas, SQL parametrizado, �
 
 `agent/` contiene herramientas, memorias, planner y orquestador; `config/` la configuración; `scripts/` la preparación; `data/` los CSV y políticas; `tests/` las pruebas; `docs/` diagramas, contratos y guion; `evidence/` las verificaciones; `deliverables/` la presentación.
 
-La [presentación de ServiceDesk Andina](deliverables/presentacion_servicedesk_andina.pptx) contiene diez diapositivas editables y notas para una exposición de 9 minutos y 30 segundos, incluida la demostración. El [guion](docs/guion_demo.md) detalla los tiempos y los casos. Los informes se entregan por separado del código.
+La [presentación de ServiceDesk Andina](deliverables/presentacion_servicedesk_andina.pptx) contiene diez diapositivas editables y notas del expositor para una exposición de 9 minutos y 30 segundos, incluida la demostración. Las notas detallan los tiempos y los casos. Los informes se entregan por separado del código.
 
 Captura del caso estándar:
 
