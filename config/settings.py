@@ -13,6 +13,6 @@ UMBRAL_APROBACION = 100_000
 UMBRAL_PREFERENTE = 50_000
 UMBRAL_RECURRENCIA = 3
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
-LLM_MODEL = os.getenv('LLM_MODEL', 'gemini-3.5-flash')
+LLM_MODEL = os.getenv('LLM_MODEL', 'gemini-3.5-flash-lite')
 os.environ.setdefault('ANONYMIZED_TELEMETRY', 'False')
 os.environ.setdefault('HF_HUB_DISABLE_TELEMETRY', '1')

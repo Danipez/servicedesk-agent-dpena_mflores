@@ -5,7 +5,7 @@ from agent.core import procesar_solicitud, crear_agente
 from agent.gemini import GeminiServiceError
 import logging
 from agent.memory.short_term import crear_memoria_corto_plazo
-from config.settings import DB_PATH
+from config.settings import DB_PATH, LLM_MODEL
 
 st.set_page_config(page_title='ServiceDesk Andina',page_icon='🛠️',layout='wide')
 if 'memoria' not in st.session_state:
@@ -76,6 +76,7 @@ with atencion:
         st.dataframe(pd.DataFrame([{'incidente':r['ticket_id'],'acción':r.get('accion','error'),
             'razón':r.get('razon',r.get('error',''))} for r in st.session_state.historial]),width='stretch')
 with conversacion:
+    st.caption(f'Modelo configurado: {LLM_MODEL}')
     st.write('Escribe una pregunta sobre un incidente. Por ejemplo: «Consulta INC-035 y dime qué información falta». Las consultas informativas no deben modificar el caso.')
     pregunta=st.text_input('Pregunta al agente',placeholder='Consulta INC-022 y explica por qué requiere aprobación')
     if st.button('Consultar con Gemini') and pregunta.strip():

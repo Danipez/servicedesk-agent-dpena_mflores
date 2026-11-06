@@ -88,7 +88,7 @@ python -m streamlit run app.py
 
 Abrir http://localhost:8501. `seed_data` borra y recrea exclusivamente la base local configurada, incluido su historial; usarlo para reiniciar la demo. `index_politicas` descarga MiniLM la primera vez y construye dos colecciones Chroma. `verify_llm` es una prueba online independiente; si falla por cuota, la interfaz y el flujo estructurado siguen disponibles.
 
-Después de instalar, en Windows también se puede abrir `iniciar.cmd`. El modelo predeterminado validado es Gemini 3.5 Flash; `agent/gemini.py` preserva sus firmas de herramientas para conservar compatibilidad con AgentExecutor de LangChain 0.3. La verificación online de dos turnos se ejecuta con `python -m scripts.verify_agent`. Los escenarios con RAG se regeneran con `python -m scripts.demo` sin alterar la base de demostración.
+Después de instalar, en Windows también se puede abrir `iniciar.cmd`. El modelo predeterminado es `gemini-3.5-flash-lite`, seleccionado tras verificar disponibilidad y consultas completas. Se utiliza un nombre fijo en lugar del alias `gemini-flash-latest`. `agent/gemini.py` preserva sus firmas de herramientas para conservar compatibilidad con AgentExecutor de LangChain 0.3. La verificación online de dos turnos se ejecuta con `python -m scripts.verify_agent`. Los escenarios con RAG se regeneran con `python -m scripts.demo` sin alterar la base de demostración.
 
 `requirements-lock.txt` fija el entorno validado en Windows y Python 3.12. En otra plataforma, si una dependencia no dispone de distribución compatible, instalar `requirements.txt`, que conserva los rangos del stack, y volver a ejecutar las pruebas. No se afirma validación en otras plataformas.
 
