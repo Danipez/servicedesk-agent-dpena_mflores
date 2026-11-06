@@ -120,6 +120,12 @@ La suite verifica las seis reglas y límites, herramientas, SQL parametrizado, �
 
 El informe tiene un máximo de cinco páginas. Los integrantes deben completar sus reflexiones personales antes de la entrega. Guion de diez minutos en [guion_demo.md](docs/guion_demo.md). La presentación puede apoyarse en el dashboard y el diagrama. El video de respaldo y el envío por AVA corresponden a los integrantes.
 
+Captura del caso estándar:
+
+![Atención estándar con orden y traza](evidence/screenshots/01_caso_estandar.png)
+
+La verificación desde otra copia del código se describe en [reproducibilidad.md](evidence/reproducibilidad.md).
+
 ## Elección de framework
 
 Se recomienda LangChain para mantener fidelidad técnica al tutorial. Haystack también ofrece agentes, herramientas y estado, pero exigiría adaptar esta implementación. La comparación se desarrolla en [comparacion_frameworks.md](docs/comparacion_frameworks.md).
