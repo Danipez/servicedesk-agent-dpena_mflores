@@ -62,7 +62,7 @@ El orden es estricto y la primera coincidencia determina la acción. La regla 4 
 
 ## Instalación desde cero
 
-Se recomienda Python 3.12 de 64 bits y Git. Las dependencias conservan LangChain 0.3 para reproducir las APIs del tutorial. La primera instalación requiere internet y espacio para PyTorch y el modelo de embeddings.
+Se recomienda Python 3.12 de 64 bits y Git. Las dependencias fijan versiones compatibles con AgentExecutor y ConversationBufferMemory. La primera instalación requiere internet y espacio para PyTorch y el modelo de embeddings.
 
 ```powershell
 git clone https://github.com/Danipez/servicedesk-agent-dpena_mflores.git
@@ -116,9 +116,14 @@ La suite verifica las seis reglas y límites, herramientas, SQL parametrizado, �
 
 ## Estructura y entrega
 
-`agent/` contiene herramientas, memorias, planner y orquestador; `config/` la configuración; `scripts/` la preparación; `data/` los CSV y políticas; `tests/` las pruebas; `docs/` diagramas, contratos y guion; `evidence/` las verificaciones; `deliverables/` la presentación.
+`agent/` contiene herramientas, memorias, planner y orquestador; `config/` la configuración; `scripts/` la preparación de datos; `data/` los CSV y políticas; `tests/` las pruebas; `docs/` la documentación técnica; `evidence/` las verificaciones.
 
-La [presentación de ServiceDesk Andina](deliverables/presentacion_servicedesk_andina.pptx) contiene diez diapositivas editables y notas del expositor para una exposición de 9 minutos y 30 segundos, incluida la demostración. Las notas detallan los tiempos y los casos. Los informes se entregan por separado del código.
+### Documentos del proyecto
+
+- [Informe en PDF](deliverables/informe_servicedesk_andina.pdf)
+- [Presentación en PowerPoint](deliverables/presentacion_servicedesk_andina.pptx)
+
+
 
 Captura del caso estándar:
 
@@ -128,7 +133,7 @@ La verificación desde otra copia del código se describe en [reproducibilidad.m
 
 ## Elección de framework
 
-Se recomienda LangChain para mantener fidelidad técnica al tutorial. Haystack también ofrece agentes, herramientas y estado, pero exigiría adaptar esta implementación. La comparación se desarrolla en [comparacion_frameworks.md](docs/comparacion_frameworks.md).
+LangChain integra los contratos de las siete herramientas, el ciclo de AgentExecutor y la memoria de conversación. El planner mantiene las reglas de decisión en un módulo independiente, verificable mediante pruebas automatizadas.
 
 ## Referencias
 

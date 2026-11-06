@@ -1,6 +1,6 @@
 # Arquitectura y memorias
 
-La interfaz mantiene la distribución de la guía: barra lateral con casos, formulario de incidente y descripción, decisión con color, traza, memoria e historial. Agrega una pestaña para usar el AgentExecutor real con Gemini y las siete herramientas.
+La interfaz incluye barra lateral con casos, formulario de incidente y descripción, decisión con color, traza, memoria e historial. La pestaña conversacional utiliza AgentExecutor con Gemini y las siete herramientas.
 
 ## Dos rutas de ejecución
 
@@ -8,7 +8,7 @@ La interfaz mantiene la distribución de la guía: barra lateral con casos, form
 
 ## Memoria de corto plazo
 
-ConversationBufferMemory conserva mensajes en RAM y st.session_state. El flujo estructurado guarda solicitud y resultado; el agente Gemini incorpora chat_history en su prompt. Nueva conversación crea un buffer vacío y conserva SQLite. Esta API corresponde a LangChain 0.3, fijado deliberadamente por compatibilidad con el tutorial.
+ConversationBufferMemory conserva mensajes en RAM y st.session_state. El flujo estructurado guarda solicitud y resultado; el agente Gemini incorpora chat_history en su prompt. Nueva conversación crea un buffer vacío y conserva SQLite. La implementación utiliza la API de memoria de LangChain 0.3.
 
 ## Memoria de largo plazo
 
@@ -20,7 +20,7 @@ all-MiniLM-L6-v2 genera embeddings locales. Chroma persiste dos colecciones: sei
 
 ## Compatibilidad de Gemini
 
-El agente conserva AgentExecutor y las herramientas del stack LangChain 0.3 de la guía. El adaptador `agent/gemini.py` implementa BaseChatModel con la API REST oficial y conserva completos los `parts` de respuestas Gemini, incluidas las firmas de llamadas a herramientas. Esto permite usar Gemini 3.5 Flash con el ciclo de herramientas antiguo; el conector Google anterior pierde esa información. La prueba simple verify_llm conserva el conector del tutorial; verify_agent verifica la ruta completa utilizada por la aplicación. Referencia: https://ai.google.dev/gemini-api/docs/thought-signatures
+El agente utiliza AgentExecutor y herramientas de LangChain 0.3. El adaptador `agent/gemini.py` implementa BaseChatModel con la API REST oficial y conserva completos los `parts` de respuestas Gemini, incluidas las firmas de llamadas a herramientas. Esto permite usar Gemini 3.5 Flash Lite con el ciclo de herramientas implementado. La prueba verify_llm utiliza langchain-google-genai; verify_agent verifica la ruta completa utilizada por la aplicación. Referencia: https://ai.google.dev/gemini-api/docs/thought-signatures
 
 ## Integridad y límites
 

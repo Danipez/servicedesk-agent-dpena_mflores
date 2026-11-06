@@ -6,4 +6,4 @@ Recibe un ID o una solicitud en lenguaje natural, recupera contexto, valida cobe
 
 No repara equipos, compra repuestos, realiza pagos ni envía correos. Las aprobaciones de jefatura y la resolución técnica quedan fuera del alcance. La cobertura, el impacto y la urgencia se consideran datos confiables del conjunto de datos de prueba. Un despliegue empresarial necesitaría autenticación, autorización por rol y un reloj SLA real.
 
-La demostración debe recorrer atención estándar, falta de cobertura, aprobación por costo y cambio por memoria en diez minutos. La latencia de cada ejecución se registra en evidence/demo_resultados.json; no se garantiza un tiempo para todos los equipos ni para Gemini.
+Los escenarios verifican atención estándar, falta de cobertura, aprobación por costo y cambio de decisión por memoria. La latencia de cada ejecución se registra en evidence/demo_resultados.json.

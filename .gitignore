@@ -13,3 +13,4 @@ apikey*
 tmp/
 deliverables/*.docx
 deliverables/*.pdf
+!deliverables/informe_servicedesk_andina.pdf
